@@ -1,24 +1,3 @@
-# README
+# Welcome to FindTrip
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**FindTrip** is an app to search drivers for your trips in a short time. It will allow you to reduce expenses and ride comfort.
