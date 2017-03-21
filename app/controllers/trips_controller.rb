@@ -1,6 +1,10 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:search_from] and params[:search_to]
+      @trips = search
+    else
+      @trips = Trip.all
+    end
   end
 
   def show
@@ -31,5 +35,9 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:start_location, :finish_location, :start_time, :finish_time, :duration, :distance,
                                  :price, :latitude, :longitude)
+  end
+
+  def search
+    @trips = Trip.search(params[:search_from], params[:search_to])
   end
 end
