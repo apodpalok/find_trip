@@ -2,6 +2,8 @@
   <%= link_to 'New trip', new_trip_path %>
 </h3>
 
+<%= render 'search' %>
+
 <% @trips.each do |trip| %>
   <h3>
     <%= link_to trip.id , trip_path(trip) %>
