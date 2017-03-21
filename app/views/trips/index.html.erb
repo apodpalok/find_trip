@@ -1,0 +1,23 @@
+<h3>
+  <%= link_to 'New trip', new_trip_path %>
+</h3>
+
+<% @trips.each do |trip| %>
+  <h3>
+    <%= link_to trip.id , trip_path(trip) %>
+  </h3>
+
+  <p>Start Location:
+    <%= trip.start_location %>
+  </p>
+
+  <p>Finish Location:
+    <%= trip.finish_location %>
+  </p>
+
+  <p>Price:
+    <%= trip.price %>
+  </p>
+
+  <hr>
+<% end %>

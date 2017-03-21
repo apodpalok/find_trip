@@ -1,0 +1,39 @@
+<%= form_for :trip, url: trips_path, html: { multipart: true } do |f| %>
+
+  <% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@trip.errors.count, "error") %> prohibited
+        this trip from being saved:
+      </h2>
+      <ul>
+        <% @trip.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :start_location %><br>
+    <%= f.text_field :start_location %>
+  </p>
+
+  <p>
+    <%= f.label :finish_location %><br>
+    <%= f.text_field :finish_location %>
+  </p>
+
+  <p>
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<p>
+  <%= link_to 'Back', trips_path %>
+</p>
