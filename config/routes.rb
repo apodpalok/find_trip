@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
-  resources :trips, only: [:index, :show, :new, :create]
+  resources :trips, only: [:index, :show, :new, :create, :destroy]
   get 'account/:id', to: 'account#show', as: 'account'
 end
