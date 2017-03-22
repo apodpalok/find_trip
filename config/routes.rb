@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     resources :photo, only: [:show, :destroy]
     resources :trips
   end
+
+  resources :trips, only: [:index, :show, :new, :create, :destroy]
 end
