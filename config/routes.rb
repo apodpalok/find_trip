@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :edit]
     resources :cars
     resources :photo, only: [:show, :destroy]
+    resources :trips
   end
 end
