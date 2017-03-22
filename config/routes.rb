@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root 'home#index'
   namespace :account do
     resources :profile, only: [:show, :edit]
+    resources :cars
   end
 end

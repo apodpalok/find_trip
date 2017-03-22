@@ -1,0 +1,29 @@
+<h1>This is my cars</h1>
+<div class="col-md-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% count = 0 %>
+      <% @user_cars.each do |car| %>
+        <tr>
+          <td><%= count+=1 %></td>
+          <td>car<%=count%></td>
+          <td>model</td>
+          <td><%= car.color %></td>
+          <td><%= link_to 'Посмотреть', account_car_path(car.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Добавить автомобиль', new_account_car_path %>
+</div>
+
+
