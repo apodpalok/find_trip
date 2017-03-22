@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
   namespace :account do
+    resources :profile, only: [:show, :edit]
   end
 end

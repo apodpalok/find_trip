@@ -6,7 +6,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <form class="navbar-form navbar-right">
         <% if user_signed_in? %>
-            <span><%= link_to 'Мой кабинет', account_path(current_user.id) %></span>
+            <span><%= link_to 'Мой кабинет', account_profile_path(current_user.id) %></span>
             <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
         <% else %>
             <div class="btn-group" role="group">
