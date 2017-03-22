@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   namespace :account do
     resources :profile, only: [:show, :edit]
     resources :cars
+    resources :photo, only: [:show, :destroy]
   end
 end
