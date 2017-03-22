@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    root 'pages#index'
+    root 'main#index'
+    get 'control', to: 'control#index'
   end
 
   root 'home#index'
