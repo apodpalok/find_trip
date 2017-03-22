@@ -2,10 +2,15 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    root 'pages#index'
+    root 'main#index'
+    get 'control', to: 'control#index'
   end
 
   root 'home#index'
-  resources :trips, only: [:index, :show, :new, :create, :destroy]
-  get 'account/:id', to: 'account#show', as: 'account'
+  namespace :account do
+    resources :profile, only: [:show, :edit]
+    resources :cars
+    resources :photo, only: [:show, :destroy]
+    resources :trips
+  end
 end

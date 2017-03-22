@@ -1,5 +1,5 @@
 module Admin
-  class PagesController < BaseController
+  class ControlController < BaseController
     def index
     end
   end

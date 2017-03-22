@@ -10,8 +10,10 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <div>
+    <%= render 'shared/alert' %>
+    <div class="container">
       <%= yield %>
+      <%= render 'shared/footer' %>
     </div>
   </body>
 </html>
