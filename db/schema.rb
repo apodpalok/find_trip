@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322135756) do
+ActiveRecord::Schema.define(version: 20170322224054) do
 
   create_table "car_manufactories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "make"
@@ -44,16 +44,17 @@ ActiveRecord::Schema.define(version: 20170322135756) do
   create_table "trips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "start_location"
     t.string   "finish_location"
-    t.float    "latitude",        limit: 24
-    t.float    "longitude",       limit: 24
+    t.float    "start_latitude",   limit: 24
+    t.float    "start_longitude",  limit: 24
     t.datetime "start_time"
     t.datetime "finish_time"
     t.datetime "duration"
-    t.float    "distance",        limit: 24
+    t.float    "distance",         limit: 24
     t.integer  "price"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.float    "finish_latitude",  limit: 24
+    t.float    "finish_longitude", limit: 24
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
