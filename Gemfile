@@ -19,6 +19,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 gem 'bower-rails', '~> 0.11.0'
 gem 'simple_form'
+gem 'geocoder'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
