@@ -1,14 +1,10 @@
 class Trip < ApplicationRecord
   #belongs_to :user
   
-  validates :start_location, presence: true
-  validates :finish_location, presence: true
-  validates :start_time, presence: true
+  validates :start_location, :finish_location, :start_time, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
 
-  before_save :geocode_start_location
-  before_save :geocode_finish_location
-  before_save :get_googlemaps_api_responce
+  before_save :geocode_start_location, :geocode_finish_location, :get_googlemaps_api_responce
 
   def self.search(search_from, search_to)
     self.where("start_location LIKE ? and finish_location LIKE ?", "%#{search_from}%", "%#{search_to}%")
