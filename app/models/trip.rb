@@ -23,7 +23,7 @@ class Trip < ApplicationRecord
   end
 
   def get_googlemaps_api_responce
-    key = ENV['AIzaSyBtao_Aaz0n3I8RE4SmcATc0CqloqI3gAw']
+    key = ENV['google_maps_api_key']
     uri = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{start_latitude},#{start_longitude}&destinations=#{finish_latitude},#{finish_longitude}&mode=driving&key=#{key}"
     response = RestClient.get(uri)
     hash = JSON.parse(response.body)
