@@ -3,11 +3,12 @@ class Trip < ApplicationRecord
   
   validates :start_location, presence: true
   validates :finish_location, presence: true
+  validates :start_time, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
 
   before_save :geocode_start_location
   before_save :geocode_finish_location
-  before_save :get_distance
+  before_save :get_googlemaps_api_responce
 
   def self.search(search_from, search_to)
     self.where("start_location LIKE ? and finish_location LIKE ?", "%#{search_from}%", "%#{search_to}%")
@@ -25,12 +26,14 @@ class Trip < ApplicationRecord
     self.finish_longitude = coords[1]
   end
 
-  def get_distance
+  def get_googlemaps_api_responce
     key = ENV['AIzaSyBtao_Aaz0n3I8RE4SmcATc0CqloqI3gAw']
-    uri = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{start_latitude},#{start_longitude}&destinations=#{finish_latitude},#{finish_longitude}&key=#{key}"
+    uri = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{start_latitude},#{start_longitude}&destinations=#{finish_latitude},#{finish_longitude}&mode=driving&key=#{key}"
     response = RestClient.get(uri)
     hash = JSON.parse(response.body)
     self.distance = hash.dig("rows",0,"elements",0,"distance","value")/1000
+    self.duration = hash.dig("rows",0,"elements",0,"duration","value")
+    self.finish_time = Time.at(start_time + duration).to_datetime
   end
 end
 

@@ -17,6 +17,22 @@
     <%= trip.finish_location %>
   </p>
 
+  <p>Distance:
+    <%= trip.distance %> km
+  </p>
+
+  <p>Start Time:
+    <%= trip.start_time.to_formatted_s(:short) %>
+  </p>
+
+  <p>Finish Time:
+    <%= trip.finish_time.to_formatted_s(:short) %>
+  </p>
+
+  <p>Duration:
+    <%= Time.at(trip.duration).utc.strftime("%H:%M") %>
+  </p>
+
   <p>Price:
     <%= trip.price %>
   </p>
