@@ -15,30 +15,30 @@
   <% end %>
 
   <p>
-    <%= f.label :start_location %><br>
+    <%= f.label "Место отправления" %><br>
     <%= f.text_field :start_location %>
   </p>
 
   <p>
-    <%= f.label :finish_location %><br>
+    <%= f.label "Место прибытия" %><br>
     <%= f.text_field :finish_location %>
   </p>
 
   <p>
-    <%= f.label :start_time %><br>
+    <%= f.label "Дата и время отправления" %><br>
     <%= f.datetime_select :start_time %>
   </p>
 
   <p>
-    <%= f.label :price %><br>
+    <%= f.label "Цена за место" %><br>
     <%= f.text_field :price %>
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit "Создать поездку"%>
   </p>
 <% end %>
 
 <p>
-  <%= link_to 'Back', trips_path %>
+  <%= link_to 'Назад', trips_path %>
 </p>

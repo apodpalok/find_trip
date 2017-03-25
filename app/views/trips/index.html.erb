@@ -1,39 +1,37 @@
-<h3>
-  <%= link_to 'New trip', new_trip_path %>
-</h3>
-
-<%= render 'search' %>
+<div class="search">
+  <%= render 'search' %>
+</div>
 
 <% @trips.each do |trip| %>
   <h3>
     <%= link_to trip.id , trip_path(trip) %>
   </h3>
 
-  <p>Start Location:
+  <p>Место отправления:
     <%= trip.start_location %>
   </p>
 
-  <p>Finish Location:
+  <p>Место прибытия:
     <%= trip.finish_location %>
   </p>
 
-  <p>Distance:
+  <p>Дистанция:
     <%= trip.distance %> km
   </p>
 
-  <p>Start Time:
+  <p>Врема отправления:
     <%= trip.start_time.to_formatted_s(:short) %>
   </p>
 
-  <p>Finish Time:
+  <p>Время прибытия:
     <%= trip.finish_time.to_formatted_s(:short) %>
   </p>
 
-  <p>Duration:
+  <p>Продолжительность поездки:
     <%= Time.at(trip.duration).utc.strftime("%H:%M") %>
   </p>
 
-  <p>Price:
+  <p>Цена:
     <%= trip.price %>
   </p>
 
