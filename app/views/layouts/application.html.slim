@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title
+      | Findtrip
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    = render 'shared/navbar'
+    = render 'shared/alert'
+    .container
+      = yield
+    = render 'shared/footer'

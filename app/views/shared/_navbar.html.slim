@@ -1,0 +1,34 @@
+nav.navbar
+  .container
+    .navbar-header
+      a.navbar-brand[href="#"]
+        | FindTrip
+    #navbar.navbar-collapse.collapse
+      form.navbar-form.navbar-right
+        - if user_signed_in?
+          span
+            = link_to 'Мой кабинет', account_profile_path(current_user.id)
+          = link_to 'Выйти', destroy_user_session_path, :method => :delete
+        - else
+          .btn-group[role="group"]
+            = link_to 'Войти', new_user_session_path
+          .btn-group[role="group"]
+            = link_to 'Регистрация', new_user_registration_path
+  .masthead
+    nav.navbar.navbar-default
+      .container-fluid
+        ul.nav.navbar-nav
+          li
+            = link_to 'Главная', root_path
+          li
+            a[href="#"]
+              | Блог
+          li
+            a[href="#"]
+              | О нас
+          li
+            a[href="#"]
+              | Отзывы
+        ul.nav.navbar-nav.navbar-right
+          li
+            = link_to 'Создать новую поездку', new_trip_path

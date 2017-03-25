@@ -1,0 +1,5 @@
+.search
+  = form_tag(trips_path, method: "get", id: "search-form") do
+    = text_field_tag :search_from, params[:search_from], placeholder: "Откуда?", class: 'input'
+    = text_field_tag :search_to, params[:search_to], placeholder: "Куда?", class: 'input'
+    = submit_tag "Найти поездку"
