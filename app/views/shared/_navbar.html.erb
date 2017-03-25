@@ -21,12 +21,17 @@
   </div>
   <div class="masthead">
     <nav class="navbar navbar-default">
-      <ul class="nav nav-pills">
-        <li><%= link_to 'Главная', root_path %></a></li>
-        <li><a href="#">Блог</a></li>
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Отзывы</a></li>
-      </ul>
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Главная', root_path %></li>
+          <li><a href="#">Блог</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Отзывы</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Создать новую поездку', new_trip_path %></li>
+        </ul>
+      </div>
     </nav>
   </div>
 </nav>

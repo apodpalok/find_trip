@@ -1,30 +1,28 @@
-<h3>TRIP</h3>
-
-<p>Start Location:
+<p>Место отправления:
   <%= @trip.start_location %>
 </p>
 
-<p>Finish Location:
+<p>Место прибытия:
   <%= @trip.finish_location %>
 </p>
 
-<p>Distance:
+<p>Дистанция:
   <%= @trip.distance %> km
 </p>
 
-<p>Start Time:
+<p>Врема отправления:
   <%= @trip.start_time.to_formatted_s(:short) %>
 </p>
 
-<p>Finish Time:
+<p>Время прибытия:
   <%= @trip.finish_time.to_formatted_s(:short) %>
 </p>
 
-<p>Duration:
+<p>Продолжительность поездки:
   <%= Time.at(@trip.duration).utc.strftime("%H:%M") %>
 </p>
 
-<p>Price:
+<p>Цена:
   <%= @trip.price %>
 </p>
 
@@ -33,9 +31,9 @@
 </p>
 
 <p>
-  <%= link_to 'Delete', trip_path(@trip), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Удалить поездку', trip_path(@trip), method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
 <p>
-  <%= link_to 'Back', trips_path %>
+  <%= link_to 'Назад', trips_path %>
 </p>

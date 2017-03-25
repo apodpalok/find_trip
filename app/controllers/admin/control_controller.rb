@@ -1,6 +1,5 @@
 module Admin
   class ControlController < BaseController
-    def index
-    end
+    def index; end
   end
 end

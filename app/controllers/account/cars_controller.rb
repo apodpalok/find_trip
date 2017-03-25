@@ -38,7 +38,7 @@ module Account
     end
 
     def current_user_car
-      return if current_user.cars.exists?(id:find_car.id)
+      return if current_user.cars.exists?(id: find_car.id)
       not_found
     end
   end

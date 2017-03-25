@@ -5,6 +5,7 @@ module Account
     def index
       @trips = current_user.trips
     end
+
     def show; end
 
     def find_trip

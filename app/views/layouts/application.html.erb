@@ -6,10 +6,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="//maps.google.com/maps/api/js?key=AIzaSyBtao_Aaz0n3I8RE4SmcATc0CqloqI3gAw"></script>
-    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-    <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
-
   </head>
 
   <body>
@@ -17,7 +13,7 @@
     <%= render 'shared/alert' %>
     <div class="container">
       <%= yield %>
-      <%= render 'shared/footer' %>
     </div>
+    <%= render 'shared/footer' %>
   </body>
 </html>

@@ -7,8 +7,7 @@ module Account
 
     def edit; end
 
-    def update
-    end
+    def update; end
 
     private
 
