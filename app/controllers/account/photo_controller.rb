@@ -1,12 +1,11 @@
 module Account
   class PhotoController < BaseController
-    def show
-    end
+    def show; end
 
     private
 
     def current_user_photo?
-      #future
+      # future
     end
   end
 end

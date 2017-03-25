@@ -1,10 +1,10 @@
 class TripsController < ApplicationController
   def index
-    if params[:search_from] and params[:search_to]
-      @trips = search
-    else
-      @trips = Trip.all
-    end
+    @trips = if params[:search_from] && params[:search_to]
+               search
+             else
+               Trip.all
+             end
   end
 
   def show

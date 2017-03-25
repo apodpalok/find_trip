@@ -5,10 +5,10 @@ module Account
     before_action :authenticate_user!
     before_action :admin_pages
 
-    private 
+    private
 
     def not_found
-      raise ActionController::RoutingError.new('Page Not Found')
+      raise ActionController::RoutingError, 'Page Not Found'
     end
 
     def admin_pages
