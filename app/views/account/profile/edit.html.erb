@@ -1,1 +1,40 @@
-<div><%= link_to 'Назад', account_profile_path %></div>
+<h3><span class="text-muted">Мои личные данные</span></h3>
+<hr>
+  <%= simple_form_for(@user, url: account_profile_path(@user.id)) do |t| %>
+  <div class="jumbotron">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Пол</td>
+          <td><%= @user.gender %></td>
+        </tr> 
+        <tr>
+          <td>Имя</td>
+          <td><%= t.input :first_name, label: false %></td>
+        </tr>
+        <tr>
+          <td>Фамилия</td>
+          <td><%= t.input :last_name, label: false %></td>
+        </tr>
+        <tr>
+          <td>Дата рождения</td>
+          <td><%= t.input :birth_date, label: false %></td>
+        </tr>
+        <tr>
+          <td>Город</td>
+          <td><%= t.input :city, label: false %></td>
+        </tr>
+        <tr>
+          <td>О себе</td>
+          <td>
+            <div class="alert alert-info" role="alert">
+              Расскажите о себе другим пользователям (не менее 10 символов).
+            </div>
+            <%= t.input :mini_bio, label: false %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<%= t.submit 'Сохранить' %> 
+<% end %>
