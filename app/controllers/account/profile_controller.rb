@@ -9,7 +9,7 @@ module Account
 
     def update
       @user.update(user_params)
-      redirect_to account_profile_path(@user.id)
+      redirect_to edit_account_profile_path(@user.id)
     end
 
     private

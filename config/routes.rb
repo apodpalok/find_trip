@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
   namespace :account do
-    resources :profile, only: [:show, :edit]
+    resources :profile, only: [:show, :edit, :update]
     resources :cars
     resources :photo, only: [:show, :destroy]
     resources :trips
