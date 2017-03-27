@@ -15,7 +15,7 @@ nav.navbar
                 li= link_to 'Мой профиль', edit_account_profile_path(current_user.id)
                 li= link_to 'Поездки', account_trips_path
                 li= link_to 'Мой гараж', account_cars_path
-                li= link_to 'Мое фото', account_photo_path(current_user.id)
+                li= link_to 'Мое фото', account_photo_index_path
                 li.divider role="separator" 
                 li.dropdown-header
                 li= link_to 'Выйти', destroy_user_session_path, :method => :delete
