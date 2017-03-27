@@ -6,9 +6,19 @@ nav.navbar
     #navbar.navbar-collapse.collapse
       form.navbar-form.navbar-right
         - if user_signed_in?
-          span
-            = link_to 'Мой кабинет', edit_account_profile_path(current_user.id)
-          = link_to 'Выйти', destroy_user_session_path, :method => :delete
+          ul#bs-example-navbar-collapse-1.collapse.navbar-collapse
+            .dropdown
+              a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+                = avatar_for(current_user, size: 35)
+                span.caret
+              ul.dropdown-menu
+                li= link_to 'Мой профиль', edit_account_profile_path(current_user.id)
+                li= link_to 'Поездки', account_trips_path
+                li= link_to 'Мой гараж', account_cars_path
+                li= link_to 'Мое фото', account_photo_path(current_user.id)
+                li.divider role="separator" 
+                li.dropdown-header
+                li= link_to 'Выйти', destroy_user_session_path, :method => :delete
         - else
           .btn-group[role="group"]
             = link_to 'Войти', new_user_session_path
