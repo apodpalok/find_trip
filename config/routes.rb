@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :account do
     resources :profile, only: [:show, :edit, :update]
     resources :cars
-    resources :photo, only: [:show, :edit, :update, :destroy]
+    resources :photo, only: [:index, :show, :edit, :update, :destroy]
     resources :trips
   end
 
