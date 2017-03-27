@@ -1,13 +1,16 @@
 module Account
   class ProfileController < BaseController
     before_action :find_user, only: [:show, :edit, :update]
-    before_action :current_user_profile?
+    before_action :check_autorization
 
     def show; end
 
     def edit; end
 
-    def update; end
+    def update
+      @user.update(user_params)
+      redirect_to account_profile_path(@user.id)
+    end
 
     private
 
@@ -15,8 +18,15 @@ module Account
       @user = User.find(params[:id])
     end
 
-    def current_user_profile?
-      return if current_user.id == User.find(find_user).id
+    def user_params
+      params.require(:user).permit(:first_name, :last_name,
+                                    :email, :avatar, :mini_bio, :phone_number,
+                                    :postcode, :birth_date, :address, :address2,
+                                    :city, :gender)
+    end
+
+    def check_autorization
+      return if current_user.id == params[:id].to_i
       not_found
     end
   end

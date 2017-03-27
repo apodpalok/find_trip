@@ -23,6 +23,8 @@ gem 'slim-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'rest-client'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
 
 group :development, :test do
   gem 'byebug', platform: :mri

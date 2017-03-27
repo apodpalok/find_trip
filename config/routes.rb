@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :profile, only: [:show, :edit]
+    resources :profile, only: [:show, :edit, :update]
     resources :cars
-    resources :photo, only: [:show, :destroy]
+    resources :photo, only: [:show, :edit, :update, :destroy]
     resources :trips
   end
 

@@ -7,7 +7,7 @@ nav.navbar
       form.navbar-form.navbar-right
         - if user_signed_in?
           span
-            = link_to 'Мой кабинет', account_profile_path(current_user.id)
+            = link_to 'Мой кабинет', edit_account_profile_path(current_user.id)
           = link_to 'Выйти', destroy_user_session_path, :method => :delete
         - else
           .btn-group[role="group"]
