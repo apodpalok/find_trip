@@ -1,0 +1,21 @@
+h4
+  | Сортировка:
+.btn-group aria-label=("Button group with nested dropdown") role="group"
+  .btn-group role="group"
+    button#btnGroupDrop1.btn.btn-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+      | За ценой
+    .dropdown-menu aria-labelledby="btnGroupDrop1"
+      a.dropdown-item
+        = link_to 'по возрастанию', trips_path(sort_param: "price", sort_trend:"ASC")
+      br
+      a.dropdown-item
+        = link_to 'по убыванию', trips_path(sort_param: "price", sort_trend:"DESC")
+  .btn-group role="group"
+    button#btnGroupDrop1.btn.btn-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+      | За датой отправления
+    .dropdown-menu aria-labelledby="btnGroupDrop1"
+      a.dropdown-item
+        = link_to 'по возрастанию', trips_path(sort_param: "start_time", sort_trend:"ASC")
+      br
+      a.dropdown-item
+        = link_to 'по убыванию', trips_path(sort_param: "start_time", sort_trend: "DESC")

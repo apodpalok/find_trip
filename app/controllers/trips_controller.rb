@@ -3,6 +3,7 @@ class TripsController < ApplicationController
 
   def index
     @trips = search
+    @trips = sorting
   end
 
   def show; end
@@ -38,5 +39,9 @@ class TripsController < ApplicationController
 
   def search
     Trip.search(params[:start_location], params[:finish_location], params[:min_price], params[:max_price])
+  end
+
+  def sorting
+    @trips.order(["#{params[:sort_param]} #{params[:sort_trend]}"])
   end
 end
