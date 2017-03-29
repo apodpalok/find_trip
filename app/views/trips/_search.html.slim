@@ -1,5 +1,10 @@
 .search
-  = form_tag(trips_path, method: "get", id: "search-form") do
-    = text_field_tag :search_from, params[:search_from], placeholder: "Откуда?", class: 'input'
-    = text_field_tag :search_to, params[:search_to], placeholder: "Куда?", class: 'input'
-    = submit_tag "Найти поездку"
+  .input-group
+    = form_tag(trips_path, method: :get, id: "search-form") do
+      = text_field_tag :start_location, params[:start_location], placeholder: "Откуда?"
+      = text_field_tag :finish_location, params[:finish_location], placeholder: "Куда?"
+      br
+      = text_field_tag :min_price, params[:min_price], placeholder: "Минимальная цена"
+      = text_field_tag :max_price, params[:max_price], placeholder: "Максимальная цена"
+      span.input-group-btn
+        = submit_tag "Найти поездку", class: 'btn btn-default'
