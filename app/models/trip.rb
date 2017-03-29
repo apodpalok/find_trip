@@ -4,10 +4,17 @@ class Trip < ApplicationRecord
   validates :start_location, :finish_location, :start_time, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  before_save :geocode_start_location, :geocode_finish_location, :send_googlemaps_api_responce
+  before_save :geocode_start_location,
+              :geocode_finish_location,
+              :send_googlemaps_api_responce
 
-  def self.search(search_from, search_to)
-    where('start_location LIKE ? and finish_location LIKE ?', "%#{search_from}%", "%#{search_to}%")
+  def self.search(start_location, finish_location, min_price, max_price)
+    trips = Trip.all
+    trips = trips.where(start_location: start_location) if start_location.present?
+    trips = trips.where(finish_location: finish_location) if finish_location.present?
+    trips = trips.where('price >= ?', min_price) if min_price.present?
+    trips = trips.where('price <= ?', max_price) if max_price.present?
+    trips
   end
 
   def geocode_start_location
