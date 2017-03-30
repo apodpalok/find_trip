@@ -6,28 +6,33 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "mini_magick"
+gem 'bower-rails', '~> 0.11.0'
+gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
+gem 'devise'
+gem 'geocoder'
+gem 'gmaps4rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'pry-rails'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.2'
+gem 'rest-client'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
-gem 'devise'
-gem 'bower-rails', '~> 0.11.0'
 gem 'simple_form'
 gem 'slim-rails'
-gem 'geocoder'
-gem 'gmaps4rails'
-gem 'rest-client'
-gem 'carrierwave', '~> 1.0'
-gem "mini_magick"
+gem 'turbolinks', '~> 5'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'simplecov', :require => false
 end
 
 group :development do
