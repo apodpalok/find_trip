@@ -1,8 +1,15 @@
 require 'rails_helper'
 
 describe Trip do
-  context 'validates' do
-    it 'has a valid factory' do
+  context 'associations' do
+    it { should have_many(:trip_memberships).dependent(:destroy) }
+    it { should have_many(:users).through(:trip_memberships) }
+    it { should have_and_belong_to_many(:drivers) }
+    it { should have_and_belong_to_many(:passengers) }
+  end
+
+  context 'validations' do
+    it 'have a valid factory' do
       expect(build(:trip)).to be_valid
     end
 
@@ -70,8 +77,14 @@ describe Trip do
   context 'methods' do
     trip = FactoryGirl.create(:trip)
 
-    it 'Trip.search' do
-      expect(Trip.search('Киев', 'Черкассы', 10, 100)).to include(trip)
+    context 'self.search' do
+      it 'with valid params' do
+        expect(Trip.search('Киев', 'Черкассы', 10, 100)).to include(trip)
+      end
+
+      it 'with invalid params' do
+        expect(Trip.search('Львов', 'Черкассы', 10, 100)).to_not include(trip)
+      end
     end
   end
 end
