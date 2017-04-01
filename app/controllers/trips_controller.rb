@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   before_action :find_trip, only: [:destroy, :show, :add_passenger, :delete_passenger]
-  after_action :add_trip_to_user, only: [:create, :add_passenger]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @trips = search
@@ -16,6 +16,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     if @trip.save
+      current_user.trips << @trip
       @trip.drivers << current_user
       redirect_to @trip, alert: 'Поездку добавлено.'
     else
@@ -29,6 +30,7 @@ class TripsController < ApplicationController
   end
 
   def add_passenger
+    current_user.trips << @trip
     @trip.passengers << current_user
     redirect_to @trip
   end
@@ -56,9 +58,5 @@ class TripsController < ApplicationController
 
   def sorting
     @trips.order(["#{params[:sort_param]} #{params[:sort_trend]}"])
-  end
-
-  def add_trip_to_user
-    current_user.trips << @trip
   end
 end
