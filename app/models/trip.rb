@@ -1,8 +1,14 @@
 class Trip < ApplicationRecord
-  # belongs_to :user
+  has_many :trip_memberships, dependent: :destroy
+  has_many :users, through: :trip_memberships
+  has_and_belongs_to_many :drivers, class_name: 'User', join_table: 'drivers_trips',
+                                    association_foreign_key: 'driver_id'
+  has_and_belongs_to_many :passengers, class_name: 'User', join_table: 'passengers_trips',
+                                       association_foreign_key: 'passenger_id'
 
   validates :start_location, :finish_location, :start_time, presence: true
-  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :price, presence: true,
+                    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   before_save :geocode_start_location,
               :geocode_finish_location,

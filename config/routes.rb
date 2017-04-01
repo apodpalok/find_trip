@@ -15,5 +15,10 @@ Rails.application.routes.draw do
     resources :trips
   end
 
-  resources :trips, only: [:index, :show, :new, :create, :destroy]
+  resources :trips, only: [:index, :show, :new, :create, :destroy] do
+    member do
+      get :add_passenger
+      get :delete_passenger
+    end
+  end
 end

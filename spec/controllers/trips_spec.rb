@@ -27,6 +27,10 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'GET#new' do
+    before do
+      login_user
+    end
+
     it 'create a new trip' do
       get :new
       expect(assigns(:trip)).to be_a_new(Trip)
@@ -34,9 +38,20 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'POST#create' do
+    before(:each) do
+      login_user
+    end
+
     context 'with valid params' do
       subject do
         post :create, params: { trip: FactoryGirl.attributes_for(:trip) }
+      end
+
+      it 'add trip to user' do
+        trip = FactoryGirl.build(:trip)
+        user = FactoryGirl.build(:user)
+        user.trips << trip
+        expect(user.trips).to include(trip)
       end
 
       it 'create trip' do
@@ -49,35 +64,42 @@ RSpec.describe TripsController, type: :controller do
       end
 
       it 'has status found' do
-        is_expected.to have_http_status(:found)
+        expect(subject).to have_http_status(:found)
       end
 
       it 'redirect to trip' do
-        is_expected.to redirect_to(Trip.last)
+        expect(subject).to redirect_to(Trip.last)
+      end
+
+      it 'add trip to user' do
       end
     end
 
     context 'with invalid params' do
       subject do
-        post :create, params: { trip: FactoryGirl.attributes_for(:trip, price: 99.9) }
+        post :create, params: { trip: FactoryGirl.attributes_for(:trip, price: nil) }
       end
 
       it 'render new template' do
         is_expected.to render_template('new')
       end
     end
+  end
 
-    describe 'DELETE#destroy' do
-      trip = FactoryGirl.create(:trip)
-      subject { delete :destroy, params: { id: trip.id } }
+  describe 'DELETE#destroy' do
+    before(:each) do
+      login_user
+    end
 
-      it 'delete trip' do
-        expect { subject }.to change(Trip, :count).by(-1)
-      end
+    trip = FactoryGirl.create(:trip)
+    subject { delete :destroy, params: { id: trip.id } }
 
-      it 'redirect to trips_path' do
-        is_expected.to redirect_to(trips_path)
-      end
+    it 'delete trip' do
+      expect { subject }.to change(Trip, :count).by(-1)
+    end
+
+    it 'redirect to trips_path' do
+      is_expected.to redirect_to(trips_path)
     end
   end
 end

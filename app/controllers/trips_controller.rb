@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
-  before_action :find_trip, only: [:show, :destroy]
+  before_action :find_trip, only: [:destroy, :show, :add_passenger, :delete_passenger]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @trips = search
@@ -15,6 +16,8 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     if @trip.save
+      current_user.trips << @trip
+      @trip.drivers << current_user
       redirect_to @trip, alert: 'Поездку добавлено.'
     else
       render 'new'
@@ -24,6 +27,18 @@ class TripsController < ApplicationController
   def destroy
     @trip.destroy
     redirect_to trips_path, alert: 'Поездку удалено.'
+  end
+
+  def add_passenger
+    current_user.trips << @trip
+    @trip.passengers << current_user
+    redirect_to @trip
+  end
+
+  def delete_passenger
+    current_user.trips.delete(@trip)
+    @trip.passengers.delete(current_user)
+    redirect_to @trip
   end
 
   private
