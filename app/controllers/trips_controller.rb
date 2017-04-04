@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   before_action :find_trip, only: [:destroy, :show, :add_passenger, :delete_passenger]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :update_status!, only: [:index]
 
   def index
     @trips = search
@@ -58,5 +59,9 @@ class TripsController < ApplicationController
 
   def sorting
     @trips.order(["#{params[:sort_param]} #{params[:sort_trend]}"])
+  end
+
+  def update_status!
+    Trip.where('start_time <= ?', Time.now).update_all(status: :archived)
   end
 end

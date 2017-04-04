@@ -1,4 +1,6 @@
 class Trip < ApplicationRecord
+  enum status: [:active, :archived]
+
   has_many :trip_memberships, dependent: :destroy
   has_many :users, through: :trip_memberships
   has_and_belongs_to_many :drivers, class_name: 'User', join_table: 'drivers_trips',
@@ -15,7 +17,7 @@ class Trip < ApplicationRecord
               :send_googlemaps_api_responce
 
   def self.search(start_location, finish_location, min_price, max_price)
-    trips = Trip.all
+    trips = Trip.where(status: :active)
     trips = trips.where(start_location: start_location) if start_location.present?
     trips = trips.where(finish_location: finish_location) if finish_location.present?
     trips = trips.where('price >= ?', min_price) if min_price.present?

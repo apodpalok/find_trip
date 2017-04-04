@@ -12,13 +12,16 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :edit, :update]
     resources :cars
     resources :photo, only: [:index, :show, :edit, :update, :destroy]
-    resources :trips
+    resources :trips do
+      get :active
+      get :archived
+    end
   end
 
   resources :trips, only: [:index, :show, :new, :create, :destroy] do
     member do
-      get :add_passenger
-      get :delete_passenger
+      put :add_passenger
+      put :delete_passenger
     end
   end
 end
