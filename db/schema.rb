@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401182203) do
+ActiveRecord::Schema.define(version: 20170403140213) do
 
   create_table "car_manufactories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "make"
@@ -69,11 +69,12 @@ ActiveRecord::Schema.define(version: 20170401182203) do
     t.datetime "finish_time"
     t.float    "distance",         limit: 24
     t.integer  "price"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.float    "finish_latitude",  limit: 24
     t.float    "finish_longitude", limit: 24
     t.integer  "duration"
+    t.integer  "status",                      default: 0
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

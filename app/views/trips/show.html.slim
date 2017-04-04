@@ -20,7 +20,6 @@ p
 p
   | Цена:
   = @trip.price
-
 p
   | Водитель:
   = @trip.drivers.map { |driver| driver.email }.join(", ")
@@ -32,10 +31,10 @@ p
 - unless current_user == @trip.drivers[0]
   - unless @trip.passengers.include?(current_user)
     button.btn type="button"
-      = link_to "Cтать пассажиром", add_passenger_trip_path(@trip)
+      = link_to "Cтать пассажиром", add_passenger_trip_path(@trip), method: :put
   - if @trip.passengers.include?(current_user)
     button.btn type="button"
-      = link_to "Не учавствовать в поездке", delete_passenger_trip_path(@trip)
+      = link_to "Не учавствовать в поездке", delete_passenger_trip_path(@trip), method: :put
 p
   = render 'map'
 p
