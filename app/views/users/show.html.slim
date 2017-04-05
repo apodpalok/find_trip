@@ -1,0 +1,9 @@
+- @user.trips.each do |trip|
+  - if trip.passengers.include?(current_user) && trip.status == "archived"
+    = render 'reviews/form'
+    - break
+
+- if @user.reviews.count == 0
+  p У этого водителя нет отзывов. Будьте первым!
+- else
+  = render 'reviews/reviews_list'

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    resources :reviews, only: [:create]
+  end
+
   resources :trips, only: [:index, :show, :new, :create, :destroy] do
     member do
       put :add_passenger

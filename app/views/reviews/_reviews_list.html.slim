@@ -1,0 +1,8 @@
+- @user.reviews.each do |review|
+  p
+    | Автор:
+    = current_user.email
+  p = review.rating
+  p = review.comment
+  small = review.created_at
+  hr

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :cars
+  has_many :reviews, dependent: :destroy
   has_many :trip_memberships
   has_many :trips, through: :trip_memberships
   has_and_belongs_to_many :trips_as_driver, class_name: 'Trip', join_table: 'drivers_trips',

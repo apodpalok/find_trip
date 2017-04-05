@@ -22,8 +22,7 @@ p
   = @trip.price
 p
   | Водитель:
-  = @trip.drivers.map { |driver| driver.email }.join(", ")
-
+  = link_to @trip.drivers[0].email, user_path(@trip.drivers[0])
 p
   | Пассажиры:
   = @trip.passengers.map { |passenger| passenger.email }.join(", ")
