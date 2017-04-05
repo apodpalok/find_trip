@@ -11,6 +11,7 @@ class Trip < ApplicationRecord
   validates :start_location, :finish_location, :start_time, presence: true
   validates :price, presence: true,
                     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validate :start_time_cannot_be_in_the_past
 
   before_save :geocode_start_location,
               :geocode_finish_location,
@@ -45,5 +46,13 @@ class Trip < ApplicationRecord
     self.distance = hash.dig('rows', 0, 'elements', 0, 'distance', 'value') / 1000
     self.duration = hash.dig('rows', 0, 'elements', 0, 'duration', 'value')
     self.finish_time = Time.at(start_time + duration).to_datetime
+  end
+
+  private
+
+  def start_time_cannot_be_in_the_past
+    if start_time.present? && start_time < DateTime.now
+      errors.add(:start_time, "can't be in the past")
+    end
   end
 end
