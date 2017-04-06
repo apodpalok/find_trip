@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406124156) do
+ActiveRecord::Schema.define(version: 20170406155659) do
 
   create_table "car_manufactories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "make"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170406124156) do
     t.text     "comment",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "author_id"
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 

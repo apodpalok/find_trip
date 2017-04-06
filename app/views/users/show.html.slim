@@ -1,3 +1,4 @@
+= avatar_for(@user, size: 200)
 .average-review-rating data-score== @average_review = @average_review.round(1)
 p
   = @user.reviews.count
@@ -8,9 +9,6 @@ p
     = render 'reviews/form'
     - break
 
-- if @user.reviews.count == 0
-  p У этого водителя нет отзывов.
-- else
   = render 'reviews/reviews_list'
 
   javascript:
