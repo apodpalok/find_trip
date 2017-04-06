@@ -1,0 +1,12 @@
+h4 Оставить отзыв
+= simple_form_for([@user, @user.reviews.build]) do |f|
+  #rating-form
+    label Rating
+  = f.input :comment
+  = f.button :submit
+
+javascript:
+  $('#rating-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });

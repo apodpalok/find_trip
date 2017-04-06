@@ -2,9 +2,9 @@ h1
   | Как водитель:
   - @trips.each do |trip|
     - if trip.drivers.include?(current_user)
-      = link_to trip.id , trips_path
+      = link_to trip.id , trip_path(trip)
 h1
   | Как пассажир:
   - @trips.each do |trip|
     - if trip.passengers.include?(current_user)
-      = link_to trip.id , trips_path(trip)
+      = link_to trip.id , trip_path(trip)
