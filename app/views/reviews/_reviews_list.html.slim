@@ -1,8 +1,5 @@
-- @user.reviews.each do |review|
-  p
-    | Автор:
-    = current_user.email
-  p = review.rating
+- @user.reviews.order("created_at desc").each do |review|
+  .review-rating data-score== review.rating
   p = review.comment
-  small = review.created_at
+  small = review.created_at.try(:strftime,'%Y.%m.%d %H:%M')
   hr
