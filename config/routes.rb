@@ -4,11 +4,6 @@ Rails.application.routes.draw do
 
   root 'trips#index'
 
-  namespace :admin do
-    root 'main#index'
-    get 'control', to: 'control#index'
-  end
-
   namespace :account do
     resources :profile, only: [:show, :edit, :update]
     resources :cars
