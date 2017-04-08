@@ -1,0 +1,11 @@
+.col-lg-4
+  h3
+    span.text-muted Фото моего профиля
+  hr/
+  p Добавьте свое фото! Так вам легче будет найти попутчиков, ведь пользователи хотят видеть, с кем они будут ехать.
+.col-lg-4
+  = avatar_for(current_user, size: 150)
+  p= link_to "Удалить", account_photo_path(@user), :method => :delete, data: { confirm: "Вы действительно хотите удалить фото?" }
+  = simple_form_for(current_user, url: account_photo_path(@user), method: :patch, html: {:multipart => true }) do |f|
+    = f.file_field :avatar
+    hr= f.submit 'Сохранить'

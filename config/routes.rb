@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  root 'trips#index'
+  root 'home#index'
 
   namespace :account do
-    resources :profile, only: [:show, :edit, :update]
+    resource :profile, except: [:new]
     resources :cars
-    resources :photo, only: [:index, :show, :edit, :update, :destroy]
+    resource :photo, only: [:edit, :update, :destroy]
     resources :trips do
       get :active
       get :archived

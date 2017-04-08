@@ -1,13 +1,11 @@
 module Account
-  class PhotoController < BaseController
+  class PhotosController < BaseController
 
-    def index
-      @user = current_user
-    end 
+    def edit; end
 
     def update
       current_user.update(photo_params)
-      redirect_to account_photo_index_path
+      redirect_to edit_account_photos_path(current_user)
     end
 
     def destroy

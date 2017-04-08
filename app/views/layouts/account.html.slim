@@ -23,7 +23,7 @@ html
                 li= link_to 'Активные', account_trip_active_path(current_user), method: :get
                 li= link_to 'Архивные', account_trip_archived_path(current_user), method: :get
             = link_to 'Мой гараж', account_cars_path, class: 'list-group-item'
-            = link_to 'Мое фото', account_photo_index_path, class: 'list-group-item'
+            = link_to 'Мое фото', edit_account_photo_path, class: 'list-group-item'
         .col-xs-12.col-sm-9
           = yield
       = render 'shared/footer'

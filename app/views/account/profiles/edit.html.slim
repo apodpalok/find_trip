@@ -1,0 +1,17 @@
+h3
+  span.text-muted Мои личные данные
+hr/
+.base_form
+  = simple_form_for current_user, url: account_profile_path, method: :patch do |user|
+    fieldset
+      label for="gender" Пол
+    = current_user.gender
+    = user.input :first_name, label: "Имя"
+    = user.input :last_name, label: "Фамилия"
+    = user.input :birth_date, label: "Дата рождения"
+    = user.input :city, label: "Город"
+    .alert.alert-info role="alert" 
+      | Расскажите о себе другим пользователям (не менее 10 символов).
+    = user.input :mini_bio, label: "О себе"
+    br
+      = user.submit 'Сохранить', class: "button"
