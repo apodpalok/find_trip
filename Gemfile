@@ -25,6 +25,8 @@ gem 'gmaps4rails'
 gem 'rest-client'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem 'rails_admin', '~> 1.1.1'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
