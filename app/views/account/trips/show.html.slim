@@ -1,0 +1,9 @@
+= render 'shared/account_left_side'
+= render 'trips/trips_list'
+#sidebar.col-xs-6.col-sm-3.sidebar-offcanvas
+  p
+    = render 'trips/map'
+  p
+    = link_to 'Удалить поездку', account_trip_path(@trip), method: :delete, data: { confirm: 'Are you sure?' }
+  p
+    = link_to 'Назад', account_trips_path
