@@ -4,17 +4,24 @@ Rails.application.routes.draw do
 
   root 'trips#index'
 
-  namespace :admin do
-    root 'main#index'
-    get 'control', to: 'control#index'
-  end
-
   namespace :account do
     resources :profile, only: [:show, :edit, :update]
     resources :cars
-    resources :photo, only: [:show, :edit, :update, :destroy]
-    resources :trips
+    resources :photo, only: [:index, :show, :edit, :update, :destroy]
+    resources :trips do
+      get :active
+      get :archived
+    end
   end
 
-  resources :trips, only: [:index, :show, :new, :create, :destroy]
+  resources :users do
+    resources :reviews, only: [:create, :destroy]
+  end
+
+  resources :trips, only: [:index, :show, :new, :create, :destroy] do
+    member do
+      put :add_passenger
+      put :delete_passenger
+    end
+  end
 end

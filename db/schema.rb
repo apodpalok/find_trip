@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326183329) do
+ActiveRecord::Schema.define(version: 20170406155659) do
 
   create_table "car_manufactories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "make"
@@ -34,11 +34,40 @@ ActiveRecord::Schema.define(version: 20170326183329) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "drivers_trips", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "driver_id"
+    t.integer "trip_id"
+  end
+
   create_table "manufactory_car_models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "car_manufactory_id"
     t.integer  "car_model_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "passengers_trips", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "passenger_id"
+    t.integer "trip_id"
+  end
+
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "author_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
+  create_table "trip_memberships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_trip_memberships_on_trip_id", using: :btree
+    t.index ["user_id"], name: "index_trip_memberships_on_user_id", using: :btree
   end
 
   create_table "trips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,11 +79,12 @@ ActiveRecord::Schema.define(version: 20170326183329) do
     t.datetime "finish_time"
     t.float    "distance",         limit: 24
     t.integer  "price"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.float    "finish_latitude",  limit: 24
     t.float    "finish_longitude", limit: 24
     t.integer  "duration"
+    t.integer  "status",                      default: 0
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -83,8 +113,12 @@ ActiveRecord::Schema.define(version: 20170326183329) do
     t.string   "phone_number"
     t.string   "postcode"
     t.string   "avatar"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "trip_memberships", "trips"
+  add_foreign_key "trip_memberships", "users"
 end

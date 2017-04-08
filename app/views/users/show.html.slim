@@ -1,0 +1,30 @@
+= avatar_for(@user, size: 200)
+.average-review-rating data-score== @average_review = @average_review.round(1)
+p
+  = @user.reviews.count
+  |  отзывов
+
+- @user.trips.each do |trip|
+  - if trip.passengers.include?(current_user) && trip.status == "archived"
+    = render 'reviews/form'
+    - break
+
+  = render 'reviews/reviews_list'
+
+  javascript:
+    $('.review-rating').raty({
+      readOnly: true,
+      score: function () {
+          return $(this).attr('data-score');
+      },
+      path: '/assets/'
+    });
+
+  javascript:
+    $('.average-review-rating').raty({
+      readOnly: true,
+      path: '/assets/',
+      score: function () {
+          return $(this).attr('data-score')
+      }
+    });
