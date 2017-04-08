@@ -1,4 +1,4 @@
-= render 'shared/account_left_side'
+= render 'shared/account_left_side', params: navigation_params.merge(trip: true)
 = render 'trips/trips_list'
 #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas
   p

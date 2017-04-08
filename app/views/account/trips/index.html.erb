@@ -1,4 +1,4 @@
-<%= render 'shared/account_left_side' %>
+<%= render 'shared/account_left_side', params: navigation_params.merge(trip: true) %>
 <div class='col-xs-12 col-sm-9'>
   <ul class="nav nav-tabs nav-justified">
     <li role="presentation" class="active"><%= link_to 'Мои поездки', account_trips_path %></li>

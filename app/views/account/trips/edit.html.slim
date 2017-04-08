@@ -1,4 +1,4 @@
-= render 'shared/account_left_side'
+= render 'shared/account_left_side', params: navigation_params.merge(trip: true)
 .base_form
   = form_for :trip, url: account_trips_path, html: { multipart: true } do |f|
     - if @trip.errors.any?
