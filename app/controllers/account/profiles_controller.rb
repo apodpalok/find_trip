@@ -8,11 +8,13 @@ module Account
 
     def update
       current_user.update(user_params)
-      render :edit
+      flash[:notice] = 'Профиль обновлен'
+      redirect_to edit_account_profile_path
     end
 
     def destroy
       current_user.destroy
+      flash[:notice] = 'Аккаунт удален'
       redirect_to root_path
     end
 

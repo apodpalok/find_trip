@@ -1,0 +1,18 @@
+<div class="container">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-danger" role="alert"><%= value %></div>
+  <% end %>
+</div>
+
+<div class="base_form">
+  <h1>Войти</h1>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.input :email, required: false, autofocus: true %>
+    <%= f.input :password, required: false, label: "Пароль" %>
+    <%= f.button :submit, "Войти" %>
+    <fieldset>
+      <%= render "users/shared/links" %>
+    </fieldset>
+  <% end %>
+</div>
+

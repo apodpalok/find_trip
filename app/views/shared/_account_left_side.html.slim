@@ -9,12 +9,18 @@
             hr
             - params ||= {}
             = link_to "Мой профиль", edit_account_profile_path, class: "list-group-item #{ 'active' if params[:profile] }"
-            = link_to 'Поездки', account_trips_path, class: "list-group-item #{ 'active' if params[:trip] }"
+            = content_tag :div, class: "dropdown list-group-item" do
+              = content_tag :div, class: "dropdown-toggle",  data: { toggle: "dropdown" } do
+                | Поездки
+                span.caret
+              ul.dropdown-menu
+                li= link_to 'Активные', account_trip_active_path(current_user)
+                li= link_to 'Архивные', account_trip_archived_path(current_user)
             = link_to 'Мой гараж', account_cars_path, class: "list-group-item #{ 'active' if params[:car] }"
             = link_to 'Мое фото', edit_account_photo_path, class: "list-group-item #{ 'active' if params[:photo] }"
 
             hr
-            = link_to "Удалить профиль",account_profile_path, method: :delete
+            = link_to "Удалить аккаунт",account_profile_path,  method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Вы действительно хотите удалить страницу?"}
       - else
         div[align="center"]
           img.thumbnail.img-responsive[src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px"]
