@@ -37,6 +37,10 @@ describe Trip do
       it 'if price is less 0' do
         expect(build(:trip, price: '-8')).to_not be_valid
       end
+
+      it 'start time cannot be in the past' do
+        expect(build(:trip, start_time: DateTime.now - 1.day)).to_not be_valid
+      end
     end
   end
 
@@ -65,11 +69,11 @@ describe Trip do
     end
 
     it 'set duration' do
-      expect(trip.duration).to be(10_216)
+      expect(trip.duration).to be(9998)
     end
 
     it 'set finish_time' do
-      finish_time = DateTime.new(2017, 3, 30, 13, 50, 16)
+      finish_time = trip.start_time + trip.duration
       expect(trip.finish_time).to eq(finish_time)
     end
   end
