@@ -30,6 +30,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda', '~> 3.5'
