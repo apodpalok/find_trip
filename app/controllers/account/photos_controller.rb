@@ -10,7 +10,7 @@ module Account
 
     def destroy
       current_user.avatar.remove!
-      redirect_to account_photo_index_path
+      redirect_to account_photo_path
     end
 
     private

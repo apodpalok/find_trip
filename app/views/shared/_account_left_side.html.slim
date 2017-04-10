@@ -8,13 +8,7 @@
           hr
           - params ||= {}
           = link_to "Мой профиль", edit_account_profile_path, class: "list-group-item #{ 'active' if params[:profile] }"
-          = content_tag :div, class: "dropdown list-group-item  #{ 'active' if params[:trip] }" do
-            = content_tag :div, class: "dropdown-toggle",  data: { toggle: "dropdown" } do
-              | Поездки
-              span.caret
-            ul.dropdown-menu
-              li= link_to 'Активные', account_trip_active_path(current_user)
-              li= link_to 'Архивные', account_trip_archived_path(current_user)
+          = link_to 'Поездки',account_trip_active_path(current_user), class: "list-group-item #{ 'active' if params[:trip] }"
           = link_to 'Мой гараж', account_cars_path, class: "list-group-item #{ 'active' if params[:car] }"
           = link_to 'Мое фото', edit_account_photo_path, class: "list-group-item #{ 'active' if params[:photo] }"
 
