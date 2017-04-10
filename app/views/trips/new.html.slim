@@ -1,30 +1,31 @@
-= form_for :trip, url: trips_path, html: { multipart: true } do |f|
-  - if @trip.errors.any?
-    #error_explanation
-      h2
-        = pluralize(@trip.errors.count, "error")
-        |  prohibited this trip from being saved:
-      ul
-        - @trip.errors.full_messages.each do |msg|
-          li
-            = msg
+.base_form
+  = form_for :trip, url: trips_path, html: { multipart: true } do |f|
+    - if @trip.errors.any?
+      #error_explanation
+        h2
+          = pluralize(@trip.errors.count, "error")
+          |  prohibited this trip from being saved:
+        ul
+          - @trip.errors.full_messages.each do |msg|
+            li
+              = msg
+    p
+      = f.label "Место отправления"
+      br
+      = f.text_field :start_location
+    p
+      = f.label "Место прибытия"
+      br
+      = f.text_field :finish_location
+    p
+      = f.label "Дата и время отправления"
+      br
+      = f.datetime_select :start_time
+    p
+      = f.label "Цена за место"
+      br
+      = f.text_field :price
+    p
+      = f.submit "Создать поездку", class: "button"
   p
-    = f.label "Место отправления"
-    br
-    = f.text_field :start_location
-  p
-    = f.label "Место прибытия"
-    br
-    = f.text_field :finish_location
-  p
-    = f.label "Дата и время отправления"
-    br
-    = f.datetime_select :start_time
-  p
-    = f.label "Цена за место"
-    br
-    = f.text_field :price
-  p
-    = f.submit "Создать поездку"
-p
-  = link_to 'Назад', trips_path
+    = link_to 'Назад', trips_path

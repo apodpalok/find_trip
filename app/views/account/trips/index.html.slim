@@ -1,9 +1,9 @@
-= render 'shared/account_left_side'
+= render 'shared/account_left_side', params: navigation_params.merge(trip: true)
 h1
   | Как водитель:
   - @trips.each do |trip|
     - if trip.drivers.include?(current_user)
-      = link_to trip.id , params: navigation_params.merge(trip: true)
+      = link_to trip.id , '#'
 h1
   | Как пассажир:
   - @trips.each do |trip|

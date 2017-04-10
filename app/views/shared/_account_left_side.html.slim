@@ -1,55 +1,22 @@
 .col-lg-3.col-md-3.hidden-sm.hidden-xs
   .panel.panel-default
     .panel-body
-      - unless params[:controller] == "profiles" 
-        .media
-          div[align="center"]
-            img.thumbnail.img-responsive[src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px"]
-          .media-body
-            hr
-            - params ||= {}
-            = link_to "Мой профиль", edit_account_profile_path, class: "list-group-item #{ 'active' if params[:profile] }"
-            = content_tag :div, class: "dropdown list-group-item" do
-              = content_tag :div, class: "dropdown-toggle",  data: { toggle: "dropdown" } do
-                | Поездки
-                span.caret
-              ul.dropdown-menu
-                li= link_to 'Активные', account_trip_active_path(current_user)
-                li= link_to 'Архивные', account_trip_archived_path(current_user)
-            = link_to 'Мой гараж', account_cars_path, class: "list-group-item #{ 'active' if params[:car] }"
-            = link_to 'Мое фото', edit_account_photo_path, class: "list-group-item #{ 'active' if params[:photo] }"
-
-            hr
-            = link_to "Удалить аккаунт",account_profile_path,  method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Вы действительно хотите удалить страницу?"}
-      - else
+      .media
         div[align="center"]
           img.thumbnail.img-responsive[src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px"]
-          - if user_signed_in? && @user.id == current_user.id
-            = link_to "Редактировать профиль", edit_account_profile_path
-          - if @user.id != current_user.id 
-            = link_to "Написать", conversations_path(sender_id: current_user.id, recipient_id: @user.id), { style: "text-decoration:none", title: "Написать", class: "fa fa-lg fa-envelope-o", method: :post }
         .media-body
           hr
-          h3
-            strong
-              | О себе
-          p
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.
+          - params ||= {}
+          = link_to "Мой профиль", edit_account_profile_path, class: "list-group-item #{ 'active' if params[:profile] }"
+          = content_tag :div, class: "dropdown list-group-item  #{ 'active' if params[:trip] }" do
+            = content_tag :div, class: "dropdown-toggle",  data: { toggle: "dropdown" } do
+              | Поездки
+              span.caret
+            ul.dropdown-menu
+              li= link_to 'Активные', account_trip_active_path(current_user)
+              li= link_to 'Архивные', account_trip_archived_path(current_user)
+          = link_to 'Мой гараж', account_cars_path, class: "list-group-item #{ 'active' if params[:car] }"
+          = link_to 'Мое фото', edit_account_photo_path, class: "list-group-item #{ 'active' if params[:photo] }"
+
           hr
-          h3
-            strong
-              | Город
-          p
-            | Earth
-          hr
-          h3
-            strong
-              | Пол
-          p
-            | Unknown
-          hr
-          h3
-            strong
-              | Возраст
-          p
-            | January 01 1901
+          = link_to "Удалить аккаунт",account_profile_path,  method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Вы действительно хотите удалить страницу?"}
