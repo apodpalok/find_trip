@@ -32,6 +32,9 @@ gem "mini_magick"
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'rails_admin', '~> 1.1.1'
+gem 'mailboxer'
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', platform: :mri
