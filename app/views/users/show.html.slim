@@ -33,7 +33,8 @@
                     return $(this).attr('data-score')
                 }
               });
-
+          - unless current_user == @user
+            = link_to 'Написать', new_message_path(to: @user)
           - if user_signed_in? && @user.id == current_user.id
             = link_to "Редактировать профиль", edit_account_profile_path
         .media-body
