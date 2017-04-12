@@ -1,10 +1,11 @@
 module ApplicationHelper
-  def avatar_for(user, options = { size: 250 })
-    size = options[:size]
+  def avatar_for(user, options = { width: 250, height: 300, class: "" })
+    width = options[:width]
+    height = options[:height]
     if user.avatar?
-      image_tag user.avatar.url(:thumb), width: size.to_i 
+      image_tag user.avatar.url(:thumb), width: width.to_i, height: height.to_i, class: options[:class]
     else
-      image_tag "default-avatar.png", width: size.to_i
+      image_tag "default-avatar.png", width: width.to_i, height: height.to_i, class: options[:class]
     end
   end
 
