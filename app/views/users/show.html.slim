@@ -3,7 +3,7 @@
     .panel-body
       .media
         div[align="center"]
-          = avatar_for(@user, size: 250)
+          = avatar_for(@user, width: 250, height: 250)
           .average-review-rating data-score== @average_review = @average_review.round(1)
           p
             = @user.reviews.count
@@ -34,7 +34,7 @@
                 }
               });
           - unless current_user == @user
-            = link_to 'Написать', new_message_path(to: @user)
+            = link_to 'Написать', new_message_path(to: @user), class: "btn btn-compose"
           - if user_signed_in? && @user.id == current_user.id
             = link_to "Редактировать профиль", edit_account_profile_path
         .media-body
@@ -44,19 +44,7 @@
               | О себе
           p
             
-          hr
-          h3
-            strong
-              | Город
-          p
-            = @user.city
-          hr
-          h3
-            strong
-              | Пол
-          p
-            
-          hr
+          hr 
           h3
             strong
               | Возраст

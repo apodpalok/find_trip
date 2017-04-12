@@ -65,14 +65,14 @@ a.mail-dropdown {
     padding: 20px;
 }
 .btn-compose {
-    background: none repeat scroll 0 0 #ff6c60;
+    background: none repeat scroll 0 0 #0F4FA8;
     color: #fff;
     padding: 12px 0;
     text-align: center;
     width: 100%;
 }
 .btn-compose:hover {
-    background: none repeat scroll 0 0 #f5675c;
+    background: none repeat scroll 0 0 #4380D3;
     color: #fff;
 }
 ul.inbox-nav {
