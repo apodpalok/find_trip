@@ -1,17 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users, class_name: 'User', controllers: { registrations: 'users/registrations'}
 
-  root 'trips#index'
-
-  namespace :admin do
-    root 'main#index'
-    get 'control', to: 'control#index'
-  end
+  root 'home#index'
 
   namespace :account do
-    resources :profile, only: [:show, :edit, :update]
+    resource :profile, except: [:new]
     resources :cars
-    resources :photo, only: [:index, :show, :edit, :update, :destroy]
+    resource :photo, only: [:edit, :update, :destroy]
     resources :trips do
       get :active
       get :archived
@@ -28,4 +24,19 @@ Rails.application.routes.draw do
       put :delete_passenger
     end
   end
+
+  resources :messages, only: [:new, :create]
+
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+      post :restore
+      post :mark_as_read
+    end
+
+    collection do
+      delete :empty_trash
+    end
+  end
+
 end

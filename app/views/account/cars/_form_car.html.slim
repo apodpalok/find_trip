@@ -1,0 +1,6 @@
+= simple_form_for @car, url: account_cars_path do |f|
+  = f.input :type, label: 'Кузов'
+  = f.input :color, label: 'Цвет'
+  = f.input :comfort, label: 'Комфорт'
+  = f.input :number_seats, label: 'Количество мест'
+  = f.button :submit, label: 'Добавить'
