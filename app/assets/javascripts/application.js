@@ -17,10 +17,7 @@
 //= require turbolinks
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require underscore
-<<<<<<< HEAD
 //= require common
 //= require chosen
 //= require gmaps/google
-=======
->>>>>>> d688821000c6b3391cc33b8b0b1c3607d4a1aff9
 //= require_tree .
