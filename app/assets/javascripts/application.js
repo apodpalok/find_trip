@@ -10,13 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require gmaps/google
 //= require jquery
 //= require jquery.raty
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require underscore
+<<<<<<< HEAD
 //= require common
 //= require chosen
 //= require gmaps/google
+=======
+>>>>>>> d688821000c6b3391cc33b8b0b1c3607d4a1aff9
 //= require_tree .

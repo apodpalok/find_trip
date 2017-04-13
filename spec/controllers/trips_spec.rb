@@ -14,7 +14,7 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'GET#show' do
-    trip = FactoryGirl.create(:trip)
+    let(:trip) { FactoryGirl.create(:trip) }
     subject { get :show, params: { id: trip.id } }
 
     it 'has status success' do
@@ -27,9 +27,7 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'GET#new' do
-    before do
-      login_user
-    end
+    before { login_user }
 
     it 'create a new trip' do
       get :new
@@ -38,20 +36,11 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'POST#create' do
-    before(:each) do
-      login_user
-    end
+    before(:each) { login_user }
 
     context 'with valid params' do
       subject do
         post :create, params: { trip: FactoryGirl.attributes_for(:trip) }
-      end
-
-      it 'add trip to user' do
-        trip = FactoryGirl.build(:trip)
-        user = FactoryGirl.build(:user)
-        user.trips << trip
-        expect(user.trips).to include(trip)
       end
 
       it 'create trip' do
@@ -70,9 +59,6 @@ RSpec.describe TripsController, type: :controller do
       it 'redirect to trip' do
         expect(subject).to redirect_to(Trip.last)
       end
-
-      it 'add trip to user' do
-      end
     end
 
     context 'with invalid params' do
@@ -86,10 +72,44 @@ RSpec.describe TripsController, type: :controller do
     end
   end
 
-  describe 'DELETE#destroy' do
-    before(:each) do
-      login_user
+  describe 'PUT#add_passenger' do
+    before { login_user }
+
+    let(:trip) { FactoryGirl.create(:trip) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    subject { put :add_passenger, params: { id: trip.id } }
+
+    it 'add trip to user' do
+      user.trips << trip
+      expect(user.trips).to include(trip)
     end
+
+    it 'redirect to trip' do
+      expect(subject).to redirect_to(trip)
+    end
+  end
+
+  describe 'PUT#delete_passenger' do
+    before { login_user }
+
+    let(:trip) { FactoryGirl.create(:trip) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    subject { put :delete_passenger, params: { id: trip.id } }
+
+    it 'delete trip from the user' do
+      user.trips.delete(trip)
+      expect(user.trips).to_not include(trip)
+    end
+
+    it 'redirect to trip' do
+      expect(subject).to redirect_to(trip)
+    end
+  end
+
+  describe 'DELETE#destroy' do
+    before { login_user }
 
     trip = FactoryGirl.create(:trip)
     subject { delete :destroy, params: { id: trip.id } }
