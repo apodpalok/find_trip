@@ -3,7 +3,7 @@ h4 Оставить отзыв
   #rating-form
     label Rating
   = f.input :comment
-  = f.button :submit
+  = f.button :submit, class: "btn btn-compose"
 
 javascript:
   $('#rating-form').raty({

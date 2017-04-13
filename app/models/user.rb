@@ -13,7 +13,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
   acts_as_messageable
 
   def mailboxer_name
@@ -22,5 +21,9 @@ class User < ApplicationRecord
 
   def mailboxer_email(object)
     self.email
+  end
+
+  def full_name
+    [first_name, last_name].join(' ')
   end
 end
