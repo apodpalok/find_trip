@@ -3,7 +3,7 @@
     .panel-body
       .media
         div[align="center"]
-          img.thumbnail.img-responsive[src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px"]
+          = avatar_for(current_user, width: 250, height: 250)
         .media-body
           hr
           - params ||= {}
@@ -11,6 +11,5 @@
           = link_to 'Поездки',account_trip_active_path(current_user), class: "list-group-item #{ 'active' if params[:trip] }"
           = link_to 'Мой гараж', account_cars_path, class: "list-group-item #{ 'active' if params[:car] }"
           = link_to 'Мое фото', edit_account_photo_path, class: "list-group-item #{ 'active' if params[:photo] }"
-
           hr
           = link_to "Удалить аккаунт",account_profile_path,  method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Вы действительно хотите удалить страницу?"}

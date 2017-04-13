@@ -3,7 +3,7 @@ module ApplicationHelper
     width = options[:width]
     height = options[:height]
     if user.avatar?
-      image_tag user.avatar.url(:thumb), width: width.to_i, height: height.to_i, class: options[:class]
+      image_tag user.avatar.url(:medium), width: width.to_i, height: height.to_i, class: options[:class]
     else
       image_tag "default-avatar.png", width: width.to_i, height: height.to_i, class: options[:class]
     end
