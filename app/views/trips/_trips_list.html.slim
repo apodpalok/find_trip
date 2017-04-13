@@ -1,26 +1,34 @@
-- @trips.each do |trip|
-  h3
-    = link_to trip.id , trip_path(trip)
-  p
-    | Место отправления:
-    = trip.start_location
-  p
-    | Место прибытия:
-    = trip.finish_location
-  p
-    | Дистанция:
-    = trip.distance
-    |  km
-  p
-    | Врема отправления:
-    = trip.start_time.to_formatted_s(:short)
-  p
-    | Время прибытия:
-    = trip.finish_time.to_formatted_s(:short)
-  p
-    | Продолжительность поездки:
-    = Time.at(trip.duration).utc.strftime("%H:%M")
-  p
-    | Цена:
-    = trip.price
-  hr
+.col-sm-11
+  - @trips.each do |trip|
+    .review-block
+      .row
+        .col-sm-3
+          div[align="center"]
+            = avatar_for(trip.drivers[0], width: 150, height: 150)
+            = link_to trip.drivers[0].full_name, user_path(trip.drivers[0])
+        .col-sm-4
+          .review-block-rate
+            h3
+              = link_to trip.id , trip_path(trip)
+            p
+              | Место отправления:
+              = trip.start_location
+            p
+              | Место прибытия:
+              = trip.finish_location
+            p
+              | Дистанция:
+              = trip.distance
+              |  км
+            p
+              | Врема отправления:
+              = trip.start_time.to_formatted_s(:short)
+            p
+              | Время прибытия:
+              = trip.finish_time.to_formatted_s(:short)
+            p
+              | Продолжительность поездки:
+              = Time.at(trip.duration).utc.strftime("%H:%M")
+            p
+              | Цена:
+              = trip.price

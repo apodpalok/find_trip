@@ -18,5 +18,4 @@
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require underscore
 //= require common
-//= require gmaps/google
 //= require_tree .

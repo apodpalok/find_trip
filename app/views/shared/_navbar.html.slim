@@ -31,16 +31,16 @@
               li.dropdown
                 a.dropdown-toggle[href="#" data-toggle="dropdown"]
                   span.user-avatar.pull-left[style="margin-right:8px; margin-top:-5px;"]
-                    img.img-responsive.img-circle[src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" title="John Doe" alt="John Doe" width="30px" height="30px"]
+                    = avatar_for(current_user, width: 40, height: 40)
                   span.user-name
-                    = "#{current_user.first_name} #{current_user.last_name}"
+                    = current_user.full_name
                   b.caret
                 ul.dropdown-menu
                   li
                     .navbar-content
                       .row
                         .col-md-5
-                          img.img-responsive[src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" alt="Alternate Text" width="120px" height="120px"]
+                          = avatar_for(current_user, width: 100, height: 100)
                           p.text-center.small
                             = link_to 'Сменить фото', edit_account_photo_path
                         .col-md-7
@@ -50,8 +50,10 @@
                             = current_user.email
                           i.fa.fa-user-o[aria-hidden="true"]
                             = link_to  'Профиль', edit_account_profile_path
+                          br
                           i.fa.fa-cogs[aria-hidden="true"]
                             = link_to  'Настройки'
+                          br
                           i.fa.fa-question-circle-o[aria-hidden="true"]
                             = link_to 'Помощь'
                     .navbar-footer

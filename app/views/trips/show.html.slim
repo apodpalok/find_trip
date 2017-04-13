@@ -1,42 +1,58 @@
-p
-  | Место отправления:
-  = @trip.start_location
-p
-  | Место прибытия:
-  = @trip.finish_location
-p
-  | Дистанция:
-  = @trip.distance
-  |  km
-p
-  | Врема отправления:
-  = @trip.start_time.to_formatted_s(:short)
-p
-  | Время прибытия:
-  = @trip.finish_time.to_formatted_s(:short)
-p
-  | Продолжительность поездки:
-  = Time.at(@trip.duration).utc.strftime("%H:%M")
-p
-  | Цена:
-  = @trip.price
-p
-  | Водитель:
-  = link_to @trip.drivers[0].email, user_path(@trip.drivers[0])
-p
-  | Пассажиры:
-  = @trip.passengers.map { |passenger| passenger.email }.join(", ")
+.col-sm-11
+  .col-sm-6
+    .base_form
+      p
+        | Место отправления:
+        = @trip.start_location
+      p
+        | Место прибытия:
+        = @trip.finish_location
+      p
+        | Дистанция:
+        = @trip.distance
+        |  km
+      p
+        | Врема отправления:
+        = @trip.start_time.to_formatted_s(:short)
+      p
+        | Время прибытия:
+        = @trip.finish_time.to_formatted_s(:short)
+      p
+        | Продолжительность поездки:
+        = Time.at(@trip.duration).utc.strftime("%H:%M")
+      p
+        | Цена:
+        = @trip.price
 
-- unless current_user == @trip.drivers[0]
-  - unless @trip.passengers.include?(current_user)
-    button.btn type="button"
-      = link_to "Cтать пассажиром", add_passenger_trip_path(@trip), method: :put
-  - if @trip.passengers.include?(current_user)
-    button.btn type="button"
-      = link_to "Не учавствовать в поездке", delete_passenger_trip_path(@trip), method: :put
-p
-  = render 'map'
-p
-  = link_to 'Удалить поездку', trip_path(@trip), method: :delete, data: { confirm: 'Вы уверены?' }
-p
-  = link_to 'Назад', trips_path
+    .base_form
+      .row
+        .col-sm-6
+          p
+            | Водитель:
+            br
+            = avatar_for(@trip.drivers[0], width: 80, height: 80)
+            = link_to @trip.drivers[0].full_name, user_path(@trip.drivers[0])
+        .col-sm-6
+          p
+            | Пассажиры:
+            br
+            - @trip.passengers.each do |passenger|
+              = avatar_for(passenger, width: 80, height: 80)
+              = link_to passenger.full_name, user_path(passenger)
+              br
+
+      - unless current_user == @trip.drivers[0]
+        - unless @trip.passengers.include?(current_user)
+          = link_to "Cтать пассажиром", add_passenger_trip_path(@trip), method: :put, class: "btn btn-compose"
+        - if @trip.passengers.include?(current_user)
+          = link_to "Не учавствовать в поездке", delete_passenger_trip_path(@trip), method: :put, class: "btn btn-compose"
+
+    .base_form
+      p
+        = link_to 'Удалить поездку', trip_path(@trip), method: :delete, data: {confirm: 'Вы уверены?'}
+      p
+        = link_to 'Назад', trips_path
+
+  .col-sm-4
+    .base_form
+      = render 'map'
