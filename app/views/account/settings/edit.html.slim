@@ -1,0 +1,6 @@
+= render 'shared/alert'
+= render 'shared/account_left_side', params: navigation_params.merge(settings: true)
+h3
+  | Настройки
+hr
+  = link_to "Удалить аккаунт",account_profile_path,  method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Вы действительно хотите удалить страницу?"}

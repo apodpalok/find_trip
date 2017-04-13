@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :account do
     resource :profile, except: [:new]
+    resource :settings, only: [:edit]
     resources :cars
     resource :photo, only: [:edit, :update, :destroy]
     resources :trips do
