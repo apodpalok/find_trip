@@ -2,6 +2,10 @@
   "name": "findtrip",
   "dependencies": {
     "bootstrap-sass-official": "=3.3.7",
+<<<<<<< HEAD
     "chosen": "1.7.0"
+=======
+    "font-awesome": "^4.7.0"
+>>>>>>> origin
   }
 }

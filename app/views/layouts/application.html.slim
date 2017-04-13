@@ -7,13 +7,13 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    link href="https://bootswatch.com/cosmo/bootstrap.min.css" rel="stylesheet"
-
+    link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /
+    link href="https://bootswatch.com/cosmo/bootstrap.min.css" rel="stylesheet" /
+    
     .mainbody.container-fluid
       .row
         = render 'shared/navbar'
         div[style="padding-top:60px;"]
         = render 'shared/navbar2'
         = yield
-    = render 'shared/footer'
+      = render 'shared/footer'

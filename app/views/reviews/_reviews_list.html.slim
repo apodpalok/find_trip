@@ -1,11 +1,17 @@
 - @user.reviews.order("created_at desc").each do |review|
-  .pull-left
-    = avatar_for(review.author, size: 80)
-  .review-rating data-score== review.rating
-  p = review.author.email
-  p = review.comment
-  small = review.created_at.try(:strftime,'%Y.%m.%d %H:%M')
-
+  .row
+    .col-sm-3
+      = avatar_for(review.author, width: 120, height: 120)
+      .review-block-name= link_to @user.full_name, user_path(@user)
+      .review-block-date
+        = review.created_at.to_formatted_s(:short)
+        br
+        = time_ago_in_words(review.created_at)
+        |  ago
+    .col-sm-4
+      .review-block-rate
+        .review-rating data-score== review.rating
+        .review-block-title= review.comment
   - if review.author == current_user
-    = link_to 'Destroy', [review.user, review], method: :delete, data: { confirm: 'Вы уверены?' }
+    = link_to 'Destroy', [review.user, review], method: :delete, data: {confirm: 'Вы уверены?'}
   hr

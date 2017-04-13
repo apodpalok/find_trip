@@ -33,7 +33,7 @@
                   span.user-avatar.pull-left[style="margin-right:8px; margin-top:-5px;"]
                     = avatar_for(current_user, {width: 30, height: 30, class: "avatar-image"})
                   span.user-name
-                    = "#{current_user.first_name} #{current_user.last_name}"
+                    = current_user.full_name
                   b.caret
                 ul.dropdown-menu
                   li
@@ -50,6 +50,7 @@
                             = current_user.email
                           i.fa.fa-user-o[aria-hidden="true"]
                             = link_to  'Профиль', edit_account_profile_path
+                          br
                           i.fa.fa-cogs[aria-hidden="true"]
                             = link_to  'Настройки', edit_account_settings_path
                           i.fa.fa-question-circle-o[aria-hidden="true"]
