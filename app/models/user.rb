@@ -8,7 +8,7 @@ class User < ApplicationRecord
                                             foreign_key: 'driver_id'
   has_and_belongs_to_many :trips_as_passenger, join_table: 'passengers_trips',
                                                foreign_key: 'passenger_id'
-  has_many :identities
+  has_many :identities, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
   devise :omniauthable, :database_authenticatable, :registerable,
