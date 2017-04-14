@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require underscore
+//= require facebook
 //= require common
 //= require chosen
 //= require gmaps/google

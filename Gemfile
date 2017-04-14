@@ -35,6 +35,8 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'mailboxer'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -44,6 +46,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda', '~> 3.5'
   gem 'simplecov', :require => false
+  gem 'dotenv-rails'
 end
 
 group :development do
