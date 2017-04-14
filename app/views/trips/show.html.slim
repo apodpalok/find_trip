@@ -1,45 +1,52 @@
-.col-sm-11
-  .col-sm-6
+.col-sm-12
+  .col-sm-5
     .base_form
-      p
-        | Место отправления:
+      .trip_locations
         = @trip.start_location
-      p
-        | Место прибытия:
+        | &#8594;
         = @trip.finish_location
-      p
-        | Дистанция:
+      br
+      .point
+        .span.glyphicon.glyphicon-map-marker
+        b Время отправления:
+        = @trip.start_time.to_formatted_s(:short)
+      .point
+        .span.glyphicon.glyphicon-map-marker
+        b Время прибытия:
+        = @trip.finish_time.to_formatted_s(:short)
+      br
+      .point
+        .span.glyphicon.glyphicon-time
+        b Время в пути:
+        = Time.at(@trip.duration).utc.strftime("%H:%M")
+      .point
+        .span.glyphicon.glyphicon-road
+        b Дистанция:
         = @trip.distance
         |  km
-      p
-        | Врема отправления:
-        = @trip.start_time.to_formatted_s(:short)
-      p
-        | Время прибытия:
-        = @trip.finish_time.to_formatted_s(:short)
-      p
-        | Продолжительность поездки:
-        = Time.at(@trip.duration).utc.strftime("%H:%M")
-      p
-        | Цена:
+      .trip_price
         = @trip.price
+        | &#8372;
 
     .base_form
       .row
         .col-sm-6
-          p
+          .point
             | Водитель:
-            br
-            = avatar_for(@trip.drivers[0], width: 80, height: 80)
+          br
+          div onclick="location.href='#{user_path(@trip.drivers[0])}'" style="cursor:pointer;"
+            = avatar_for(@trip.drivers[0], {width: 80, height: 80, class: "avatar-image"})
             = link_to @trip.drivers[0].full_name, user_path(@trip.drivers[0])
         .col-sm-6
-          p
+          .point
             | Пассажиры:
-            br
-            - @trip.passengers.each do |passenger|
-              = avatar_for(passenger, width: 80, height: 80)
+          br
+          - @trip.passengers.each do |passenger|
+            div onclick="location.href='#{user_path(passenger)}'" style="cursor:pointer;"
+              = avatar_for(passenger, {width: 80, height: 80, class: "avatar-image"})
               = link_to passenger.full_name, user_path(passenger)
-              br
+            br
+      br
 
       - unless current_user == @trip.drivers[0]
         - unless @trip.passengers.include?(current_user)
@@ -53,6 +60,5 @@
       p
         = link_to 'Назад', trips_path
 
-  .col-sm-4
-    .base_form
-      = render 'map'
+  .col-sm-7.map_form
+    = render 'map'

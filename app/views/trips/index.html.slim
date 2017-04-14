@@ -1,10 +1,12 @@
 .col-md-8
-  p.page-header
-    - if @trips.blank?
-      h3 За вашим запросом поездок не найдено.
-      h3 = link_to ("Предложить поездку"), new_trip_path
-    - else
-      = render 'sorting'
-      = render 'trips_list'
+  - if @trips.blank?
+    .base_form
+      .point
+        | За вашим запросом поездок не найдено.
+        br
+        = link_to ("Предложить поездку"), new_trip_path
+  - else
+    = render 'sort'
+    = render 'trips_list'
 .col-md-4
-    = render 'search_filter'
+  = render 'search_filter'

@@ -1,34 +1,33 @@
-.col-sm-11
+.col-sm-12
   - @trips.each do |trip|
-    .review-block
+    .trip-block
       .row
         .col-sm-3
-          div[align="center"]
-            = avatar_for(trip.drivers[0], width: 150, height: 150)
-            = link_to trip.drivers[0].full_name, user_path(trip.drivers[0])
-        .col-sm-4
-          .review-block-rate
-            h3
-              = link_to trip.id , trip_path(trip)
-            p
-              | Место отправления:
+          .trip-driver-name
+            div onclick="location.href='#{user_path(trip.drivers[0])}'" style="cursor:pointer;"
+              = avatar_for(trip.drivers[0], {width: 150, height: 150, class: "avatar-image"})
+              = link_to trip.drivers[0].full_name, user_path(trip.drivers[0])
+        .div onclick="location.href='#{trip_path(trip)}'" style="cursor:pointer;"
+          .col-sm-7
+            .trip_locations
               = trip.start_location
-            p
-              | Место прибытия:
+              | &#8594;
               = trip.finish_location
-            p
-              | Дистанция:
-              = trip.distance
-              |  км
-            p
-              | Врема отправления:
+            br
+            .point
+              .span.glyphicon.glyphicon-map-marker
+              b Время отправления:
               = trip.start_time.to_formatted_s(:short)
-            p
-              | Время прибытия:
+            .point
+              .span.glyphicon.glyphicon-map-marker
+              b Время прибытия:
               = trip.finish_time.to_formatted_s(:short)
-            p
-              | Продолжительность поездки:
+            br
+            .point
+              .span.glyphicon.glyphicon-time
+              b  Время в пути:
               = Time.at(trip.duration).utc.strftime("%H:%M")
-            p
-              | Цена:
+          .col-sm-2
+            .trip_price
               = trip.price
+              | &#8372;
