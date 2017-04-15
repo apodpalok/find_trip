@@ -6,6 +6,11 @@
           .trip-driver-name
             div onclick="location.href='#{user_path(trip.drivers[0])}'" style="cursor:pointer;"
               = avatar_for(trip.drivers[0], {width: 150, height: 150, class: "avatar-image"})
+              br
+              .point.average-review-rating data-score== trip.drivers[0].average_review = trip.drivers[0].average_review
+              = trip.drivers[0].reviews.count
+              |  отзывов
+              br
               = link_to trip.drivers[0].full_name, user_path(trip.drivers[0])
         .div onclick="location.href='#{trip_path(trip)}'" style="cursor:pointer;"
           .col-sm-7
@@ -31,3 +36,5 @@
             .trip_price
               = trip.price
               | &#8372;
+
+= javascript_include_tag 'rating'

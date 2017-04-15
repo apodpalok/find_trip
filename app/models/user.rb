@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def full_name
     [first_name, last_name].join(' ')
   end
+
+  def average_review
+    self.reviews.average(:rating).round(2)
+  end
 end
