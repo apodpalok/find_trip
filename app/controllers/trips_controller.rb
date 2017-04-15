@@ -5,7 +5,7 @@ class TripsController < ApplicationController
 
   def index
     @trips = search
-    @trips = sorting
+    @trips = sorting.paginate(page: params[:page], per_page: 5)
   end
 
   def show; end

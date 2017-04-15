@@ -1,9 +1,16 @@
 .col-sm-12
+  .trip-block
+    .point
+      | По Вашему запросу найдено &nbsp;
+      b
+        = @trips.count
+      |  поездок
+
   - @trips.each do |trip|
     .trip-block
       .row
         .col-sm-3
-          .trip-driver-name
+          .trip-user-name
             div onclick="location.href='#{user_path(trip.drivers[0])}'" style="cursor:pointer;"
               = avatar_for(trip.drivers[0], {width: 150, height: 150, class: "avatar-image"})
               br
@@ -36,5 +43,7 @@
             .trip_price
               = trip.price
               | &#8372;
+  .pagination
+    = will_paginate @trips
 
 = javascript_include_tag 'rating'
