@@ -54,7 +54,7 @@ class TripsController < ApplicationController
   end
 
   def search
-    Trip.search(params[:start_location], params[:finish_location], params[:min_price], params[:max_price])
+    Trip.search(params[:start_location], params[:finish_location], params[:start_time], params[:min_price], params[:max_price])
   end
 
   def sorting

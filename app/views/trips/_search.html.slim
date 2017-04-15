@@ -3,7 +3,9 @@
     | Поиск попутчиков
 
   = form_tag(trips_path, method: :get, id: "search-form") do
-    = text_field_tag :start_location, params[:start_location], placeholder: "Откуда?"
-    = text_field_tag :finish_location, params[:finish_location], placeholder: "Куда?"
+    = text_field_tag :start_location, params[:start_location], class: 'form-control', placeholder: "Откуда?"
+    = text_field_tag :finish_location, params[:finish_location], class: 'form-control', placeholder: "Куда?"
+    .col-sm-12
+      = text_field_tag :start_time, params[:start_time], class: 'form-control', id: 'datepicker', placeholder: "Куда?"
     span.input-group-btn
       = submit_tag "Найти поездку", class: 'button'
