@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, class_name: 'User', controllers: { registrations: 'users/registrations'}
+  devise_for :users, class_name: 'FormUser', controllers: { registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root 'home#index'
 
@@ -40,4 +40,8 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :user do
+    get '/users/auth/:provider/upgrade' => 'users/omniauth_callbacks#upgrade', as: :user_omniauth_upgrade
+    get '/users/auth/:provider/setup', :to => 'users/omniauth_callbacks#setup'
+  end
 end

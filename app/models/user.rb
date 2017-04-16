@@ -8,10 +8,11 @@ class User < ApplicationRecord
                                             foreign_key: 'driver_id'
   has_and_belongs_to_many :trips_as_passenger, join_table: 'passengers_trips',
                                                foreign_key: 'passenger_id'
+  has_many :identities, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable
 
   acts_as_messageable
 
@@ -29,5 +30,13 @@ class User < ApplicationRecord
 
   def average_review
     self.reviews.average(:rating).round(2)
+  end
+
+  def facebook
+    identities.where( :provider => "facebook" ).first
+  end
+
+  def facebook_client
+    @facebook_client ||= Facebook.client( access_token: facebook.accesstoken )
   end
 end

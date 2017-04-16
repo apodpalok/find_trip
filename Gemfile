@@ -37,6 +37,8 @@ gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -46,6 +48,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda', '~> 3.5'
   gem 'simplecov', :require => false
+  gem 'dotenv-rails'
 end
 
 group :development do

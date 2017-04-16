@@ -9,9 +9,28 @@
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.input :email, required: false, autofocus: true %>
     <%= f.input :password, required: false, label: "Пароль" %>
-    <%= f.button :submit, "Войти" %>
+    <div class="simform__actions">
+      <%= f.button :submit, "Войти", class: "sumbit" %>
+      <span class="simform__actions-sidetext">
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%= link_to "Регистрация", new_registration_path(resource_name) %><br />
+      <% end -%>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Забыли пароль?", new_password_path(resource_name) %><br />
+        <% end -%>
+      </span>
+    </div>
     <fieldset>
-      <%= render "users/shared/links" %>
+      <div class="logmod__alter-container">
+        <a href="/users/auth/facebook" id="sign_in" class="connect facebook" >
+          <div class="connect__icon">
+            <i class="fa fa-facebook"></i>
+          </div>
+          <div class="connect__context">
+            <span>Войти через <strong>Facebook</strong></span>
+          </div>
+        </a>
+      </div>
     </fieldset>
   <% end %>
 </div>
