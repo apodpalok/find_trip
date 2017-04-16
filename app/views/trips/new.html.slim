@@ -12,20 +12,22 @@
     p
       = f.label "Место отправления"
       br
-      = f.text_field :start_location
+      = f.text_field :start_location, class: 'form-control'
     p
       = f.label "Место прибытия"
       br
-      = f.text_field :finish_location
+      = f.text_field :finish_location, class: 'form-control'
     p
       = f.label "Дата и время отправления"
       br
-      = f.datetime_select :start_time
+      .col-sm-12
+        = f.text_field :start_time, id: 'datetimepicker'
     p
       = f.label "Цена за место"
       br
-      = f.text_field :price
+      = f.text_field :price, class: 'form-control'
     p
       = f.submit "Создать поездку", class: "button"
   p
     = link_to 'Назад', trips_path
+

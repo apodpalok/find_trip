@@ -28,6 +28,10 @@ class User < ApplicationRecord
     [first_name, last_name].join(' ')
   end
 
+  def average_review
+    self.reviews.average(:rating).round(2)
+  end
+
   def facebook
     identities.where( :provider => "facebook" ).first
   end

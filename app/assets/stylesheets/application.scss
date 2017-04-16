@@ -1,8 +1,13 @@
 @charset "UTF-8";
+/*
+ *= require bootstrap-datetimepicker
+*/
 
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "modules/avatar";
 @import "reviews";
+@import "trips";
+@import "users";
 @import "modules/registration_form";
 @import "modules/navbar_style";
 @import "modules/search_main";

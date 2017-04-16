@@ -1,19 +1,64 @@
 = render 'shared/account_left_side', params: navigation_params.merge(trip: true)
-.col-lg-4
+
+.col-lg-8
   ul.nav.nav-tabs.nav-justified
     = content_tag :li, class: nav_tabs_active
       = link_to 'Активные', account_trip_active_path(current_user)
     = content_tag :li, class: nav_tabs_archived
       = link_to 'Архивные', account_trip_archived_path(current_user)
-.col-lg-9.col-md-9.col-sm-12.col-xs-12
+
+.col-lg-8.col-md-8.col-sm-12.col-xs-12
   .panel.panel-default
-    h1
-      | Как водитель:
-      - @trips.each do |trip|
-        - if trip.drivers.include?(current_user)
-          = link_to trip.id , trip_path(trip)
-    h1
-      | Как пассажир:
-      - @trips.each do |trip|
-        - if trip.passengers.include?(current_user)
-          = link_to trip.id , trip_path(trip)
+    .point
+      | Найдено &nbsp;
+      b
+        = @trips.count
+      |  поездок
+
+    - @trips.order(start_time: :asc).each do |trip|
+      - if trip.drivers.include?(current_user)
+        .trip-block
+          .row
+            .col-sm-3
+              .trip-user-name
+                .point
+                  b Пассажиры:
+                  - if trip.passengers.count == 0
+                    .alert В этом путешествии нет пассажиров
+                  - else
+                    - trip.passengers.each do |passenger|
+                      div onclick="location.href='#{user_path(passenger)}'" style="cursor:pointer;"
+                        = avatar_for(passenger, {width: 80, height: 80, class: "avatar-image"})
+                      = link_to new_message_path(to: passenger) do
+                        .point.glyphicon.glyphicon-envelope
+                      = link_to passenger.full_name, user_path(passenger)
+                      br
+            .div onclick="location.href='#{trip_path(trip)}'" style="cursor:pointer;"
+              .col-sm-6
+                .trip_locations
+                  = trip.start_location
+                  | &#8594;
+                  = trip.finish_location
+                br
+                .point
+                  .span.glyphicon.glyphicon-map-marker
+                  b Время отправления:
+                  = trip.start_time.to_formatted_s(:short)
+                .point
+                  .span.glyphicon.glyphicon-map-marker
+                  b Время прибытия:
+                  = trip.finish_time.to_formatted_s(:short)
+                br
+                .point
+                  .span.glyphicon.glyphicon-time
+                  b  Время в пути:
+                  = Time.at(trip.duration).utc.strftime("%H:%M")
+              .col-sm-1
+                .trip_price
+                  = trip.price
+                  | &#8372;
+            .col-sm-2
+              .point
+                = link_to trip_path(trip), method: :delete do
+                  i.glyphicon.glyphicon-remove
+                  |  Удалить

@@ -1,11 +1,11 @@
-.col-lg-4.col-md-4.hidden-sm.hidden-xs
+.col-lg-3.col-md-3.hidden-sm.hidden-xs
   .panel.panel-default
     .panel-body
       .media
-        div[align="center"]
+        .main-info
           = avatar_for(@user, width: 250, height: 250)
-          .average-review-rating data-score== @average_review = @average_review.round(1)
-          p
+          .point.average-review-rating data-score== @average_review = @average_review.round(1)
+          .point
             = @user.reviews.count
             |  отзывов
 
@@ -16,57 +16,42 @@
 
         .media-body
           hr
-          h3
-            strong О себе
-          p
+          .point
+            b Возраст:
           hr
-          h3
-            strong Возраст
-          p
+          .point
+            b О себе:
 
-.col-lg-8.col-md-8.col-sm-11.col-xs-11
-  .panel.panel-default
-    .panel-body
-      span
-        h1.panel-title.pull-left style=("font-size:30px;")
-          | #{@user.full_name}
+.col-lg-9.col-md-9.col-sm-10.col-xs-10
+  .col-sm-11
+    .panel.panel-default
+      .panel-body
+        h1.panel-title.pull-left
+          = @user.full_name
         hr
-        .container
-          .col-sm-3
-            .rating-block
-              h2.bold.padding-bottom-7
-                = @average_review.round(1)
-                small
-                  | / 5
-              .average-review-rating data-score== @average_review
-          .col-sm-3
-            | ...
+          .container
+            .col-sm-3
+              .rating-block
+                h2.bold.padding-bottom-7
+                  = @average_review.round(1)
+                  small
+                    | / 5
+                .point.average-review-rating data-score== @average_review
+            .col-sm-3
+              | ...
 
   .col-sm-11
-    .review-block
-      - @user.trips.each do |trip|
-        - if trip.passengers.include?(current_user) && trip.status == "archived"
+    - @user.trips.each do |trip|
+      - if trip.passengers.include?(current_user) && trip.status == "archived"
+        .review-block[align="center"]
           = render 'reviews/form'
           - break
 
   .col-sm-11
     .review-block
-      = render 'reviews/reviews_list'
+      - if @user.reviews.count == 0
+        p У этого пользователя нет отзывов. Будьте первым!
+      - else
+        = render 'reviews/reviews_list'
 
-javascript:
-    $('.review-rating').raty({
-        readOnly: true,
-        score: function () {
-            return $(this).attr('data-score');
-        },
-        path: '/assets/'
-    });
-
-javascript:
-    $('.average-review-rating').raty({
-        readOnly: true,
-        path: '/assets/',
-        score: function () {
-            return $(this).attr('data-score')
-        }
-    });
+= javascript_include_tag 'rating'

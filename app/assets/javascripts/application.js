@@ -20,5 +20,7 @@
 //= require facebook
 //= require common
 //= require chosen
-//= require gmaps/google
+//= require moment
+//= require bootstrap-datetimepicker
+//= require jquery.turbolinks
 //= require_tree .
