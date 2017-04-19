@@ -29,7 +29,11 @@ class User < ApplicationRecord
   end
 
   def average_review
-    self.reviews.average(:rating).round(2)
+    self.reviews.average(:rating)
+  end
+
+  def percent_review(rating)
+    self.reviews.where(rating: rating).count.to_f / self.reviews.count.to_f * 100
   end
 
   def facebook

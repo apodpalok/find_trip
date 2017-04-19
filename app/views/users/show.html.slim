@@ -4,8 +4,8 @@
       .media
         .main-info
           = avatar_for(@user, width: 250, height: 250)
-          .point.average-review-rating data-score== @average_review = @average_review.round(1)
           .point
+            .average-review-rating data-score== @average_review = @average_review.round(1)
             = @user.reviews.count
             |  отзывов
 
@@ -18,16 +18,16 @@
           hr
           .point
             b Возраст:
-          hr
-          .point
+            hr
             b О себе:
 
 .col-lg-9.col-md-9.col-sm-10.col-xs-10
   .col-sm-11
     .panel.panel-default
       .panel-body
-        h1.panel-title.pull-left
-          = @user.full_name
+        .panel-title.pull-left
+          .point
+            = @user.full_name
         hr
           .container
             .col-sm-3
@@ -36,9 +36,24 @@
                   = @average_review.round(1)
                   small
                     | / 5
-                .point.average-review-rating data-score== @average_review
-            .col-sm-3
-              | ...
+                  .point.average-review-rating data-score== @average_review
+
+            .col-sm-5
+              .row.rating-desc
+                .point
+                  - 5.downto(1) do |i|
+                    .col-xs-3.col-md-3.text-right
+                      span.glyphicon.glyphicon-star
+                        = i
+                    .col-xs-8.col-md-8
+                      .progress.progress-striped
+                        .progress-bar.progress-bar-success role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style=("width: #{@user.percent_review(i)}%;")
+                    .col-xs-1.col-md-1.text-right
+                      = @user.reviews.where(rating: i).count
+                    br
+              .point.text-center
+                = @user.reviews.count
+                |  отзывов
 
   .col-sm-11
     - @user.trips.each do |trip|
