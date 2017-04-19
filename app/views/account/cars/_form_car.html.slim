@@ -1,6 +1,10 @@
-= simple_form_for @car, url: account_cars_path do |f|
-  = f.input :type, label: 'Кузов'
+= simple_form_for [:account, @car] do |f|
+  
+  = f.input :car_type, label: 'Кузов'
   = f.input :color, label: 'Цвет'
   = f.input :comfort, label: 'Комфорт'
   = f.input :number_seats, label: 'Количество мест'
+  | Сменить фото:
+  = f.file_field :photo
+  br
   = f.button :submit, label: 'Добавить'

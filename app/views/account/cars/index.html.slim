@@ -1,19 +1,47 @@
-= render 'shared/account_left_side', params: navigation_params.merge(car: true) 
+= render 'shared/alert'
+= render 'shared/account_left_side', car: @car, params: navigation_params.merge(car: true) 
   
 h3
   span.text-muted Мое авто 
+.glyphicon.glyphicon-plus
 = link_to 'Добавить автомобиль', new_account_car_path, class: "btn btn-sm btn-warning"
 hr/
 .col-lg-9.col-md-9.col-sm-12.col-xs-12
   .panel.panel-default
     .panel-body
       - @user_cars.each do |car|
-        .col-xs-6.col-lg-4
-          h2
-            = link_to 'Honda Accord', account_car_path(car)
-          p
-            img.img-thumbnail alt="200x200" data-holder-rendered="true" data-src="holder.js/200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzIwMHgyMDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWIwNzJmN2ZhNyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1YjA3MmY3ZmE3Ij48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwNC44Ij4yMDB4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+" style=("width: 200px; height: 200px;") /
-          p
-            = link_to 'Редактировать', edit_account_car_path(car), class: "btn btn-primary"
-          p
-            =link_to "Удалить", account_car_path(car), :method => :delete, data: { confirm: "Вы действительно хотите удалить авто?" }
+        .list-group
+          .list-group-item.clearfix
+            .profile-teaser-left
+              .profile-img
+                = image_tag car.photo.url(:medium)
+            .profile-teaser-main
+              h2.profile-name
+                = link_to 'Honda Accord', edit_account_car_path(car)
+              .profile-info
+                .info.glyphicon.glyphicon-info-sign
+                  span
+                    | Тип:
+                  i
+                    = car.car_type
+                .info.glyphicon.glyphicon-adjust
+                  span
+                    | Цвет:
+                  i
+                    = car.color
+                .info.glyphicon.glyphicon-star
+                  span
+                    | Комфорт:
+                  i
+                    = car.comfort
+                .info.glyphicon.glyphicon-user
+                  span
+                    | Мест:
+                  i
+                    = car.number_seats
+                hr
+                .right_nav
+                  = link_to 'Редактировать', edit_account_car_path(car)
+                  = link_to "Удалить", account_car_path(car), method: :delete, data: { confirm: "Вы действительно хотите удалить авто?" }
+      
+      

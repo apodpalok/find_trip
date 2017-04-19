@@ -1,7 +1,7 @@
 module Account
   class CarsController < BaseController
     before_action :current_user_car, only: [:show, :edit]
-    before_action :find_car, only: [:show, :edit, :update]
+    before_action :find_car, only: [:destroy, :edit, :update]
 
     def index
       @user_cars = current_user.cars
@@ -15,22 +15,28 @@ module Account
       @car = current_user.cars.new(car_params)
 
       if @car.save
-        redirect_to [:account, @car], alert: 'Авто добавлено'
+        redirect_to account_cars_path, alert: 'Авто добавлено'
       else
         render :new
       end
     end
 
-    def show; end
-
     def edit; end
 
-    def update; end
+    def update
+      @car.update(car_params)
+      redirect_to account_cars_path, notice: "Обновлено"
+    end
+
+    def destroy
+      @car.destroy
+      redirect_to account_cars_path
+    end
 
     private
 
     def car_params
-      params.require(:car).permit(:color, :comfort, :number_of_seats)
+      params.require(:car).permit(:car_type, :color, :comfort, :number_of_seats, :photo)
     end
 
     def find_car
