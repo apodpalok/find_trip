@@ -1,0 +1,1 @@
+$(document).on("turbolinks:load",function(){jQuery(function(n){n("tr[data-link]").click(function(){window.location=n(this).data("link")})})});

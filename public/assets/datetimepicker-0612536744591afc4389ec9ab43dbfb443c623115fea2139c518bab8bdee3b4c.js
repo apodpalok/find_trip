@@ -1,0 +1,1 @@
+$(document).on("turbolinks:load",function(){$("#datetimepicker").datetimepicker({format:"YYYY-MM-DD HH:mm",sideBySide:!0})}),$(document).on("turbolinks:load",function(){$("#datepicker").datetimepicker({format:"YYYY-MM-DD"})});
