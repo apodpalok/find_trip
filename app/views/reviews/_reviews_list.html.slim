@@ -13,8 +13,7 @@
         .review-rating data-score== review.rating
         br
         .review-block-title= review.comment
-      - if review.author == current_user
-
-  .review-block-delete
-    = link_to 'Удалить', [review.user, review], method: :delete, data: {confirm: 'Вы уверены?'}
+      - if review.author.id == current_user.id
+        .review-block-delete
+          = link_to 'Удалить', [review.user, review], method: :delete, data: {confirm: 'Вы уверены?'}
   hr

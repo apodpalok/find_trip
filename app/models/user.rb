@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def average_review
-    self.reviews.average(:rating)
+    self.reviews.average(:rating).to_f.round(1)
   end
 
   def percent_review(rating)
@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def facebook
-    identities.where( :provider => "facebook" ).first
+    identities.where( provider: "facebook" ).first
   end
 
   def facebook_client

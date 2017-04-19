@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @average_review = if @reviews.blank?
                         0
                       else
-                        @reviews.average(:rating).round(2)
+                        @reviews.average(:rating).to_f.round(2)
                       end
   end
 end

@@ -9,7 +9,7 @@
             = @user.reviews.count
             |  отзывов
 
-          - unless current_user == @user
+          - unless @user.id == current_user.id
             = link_to 'Написать', new_message_path(to: @user), class: "btn btn-compose"
           - if user_signed_in? && @user.id == current_user.id
             = link_to "Редактировать профиль", edit_account_profile_path, class: "btn btn-compose"
@@ -57,7 +57,7 @@
 
   .col-sm-11
     - @user.trips.each do |trip|
-      - if trip.passengers.include?(current_user) && trip.status == "archived"
+      - if trip.passengers.ids.include?(current_user.id) && trip.status == "archived"
         .review-block[align="center"]
           = render 'reviews/form'
           - break

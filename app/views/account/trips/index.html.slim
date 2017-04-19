@@ -16,7 +16,7 @@
       |  поездок
 
     - @trips.order(start_time: :asc).each do |trip|
-      - if trip.drivers.include?(current_user)
+      - if trip.drivers[0].id == current_user.id
         .trip-block
           .row
             .col-sm-3
