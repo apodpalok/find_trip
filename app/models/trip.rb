@@ -21,7 +21,7 @@ class Trip < ApplicationRecord
     trips = Trip.where(status: :active)
     trips = trips.where(start_location: start_location) if start_location.present?
     trips = trips.where(finish_location: finish_location) if finish_location.present?
-    trips = trips.where('DATE(start_time) LIKE ?', start_time) if start_time.present?
+    trips = trips.where('date(start_time) = ?', start_time) if start_time.present?
     trips = trips.where('price >= ?', min_price) if min_price.present?
     trips = trips.where('price <= ?', max_price) if max_price.present?
     trips
