@@ -13,6 +13,7 @@ gem 'bower-rails', '~> 0.11.0'
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'dotenv-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'jbuilder', '~> 2.5'
@@ -44,7 +45,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda', '~> 3.5'
   gem 'simplecov', :require => false
-  gem 'dotenv-rails'
 end
 
 group :development do
