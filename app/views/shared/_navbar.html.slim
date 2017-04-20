@@ -1,72 +1,71 @@
 .navbar-wrapper
   .container-fluid
     .navbar.navbar-default.navbar-static-top[role="navigation"]
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
-            span.sr-only
-              | Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand[href="./ORqmj" style="margin-right:-8px; margin-top:-5px;"]
-            img[alt="Brand" src="https://lut.im/7trApsDX08/GeilMRp1FIm4f2p7.png" width="30px" height="30px"] 
-          a.navbar-brand[href="./ORqmj"]
-            | FindTrip
-          i.brand_network
+      .navbar-header
+        button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
+          span.sr-only
+            | Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand[href="./ORqmj" style="margin-right:-8px; margin-top:-5px;"]
+          img[alt="Brand" src="https://lut.im/7trApsDX08/GeilMRp1FIm4f2p7.png" width="30px" height="30px"] 
+        a.navbar-brand[href="./ORqmj"]
+          | FindTrip
+        i.brand_network
+          small
             small
-              small
-                | Найди попутчика
-        - if user_signed_in?
-          .navbar-collapse.collapse
-            ul.nav.navbar-nav
-              li
-                span.badge.badge-important
-                  | 2
-                a[href="#"]
-                  i.fa.fa-bell-o.fa-lg
-              li
-                = link_to 'Сообщения', conversations_path
-            ul.nav.navbar-nav.navbar-right
-              li.dropdown
-                a.dropdown-toggle[href="#" data-toggle="dropdown"]
-                  span.user-avatar.pull-left[style="margin-right:8px; margin-top:-5px;"]
-                    = avatar_for(current_user, {width: 30, height: 30, class: "avatar-image"})
-                  span.user-name
-                    = current_user.full_name
-                  b.caret
-                ul.dropdown-menu
-                  li
-                    .navbar-content
+              | Найди попутчика
+      - if user_signed_in?
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              span.badge.badge-important
+                | 2
+              a[href="#"]
+                i.fa.fa-bell-o.fa-lg
+            li
+              = link_to 'Сообщения', conversations_path
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a.dropdown-toggle[href="#" data-toggle="dropdown"]
+                span.user-avatar.pull-left[style="margin-right:8px; margin-top:-5px;"]
+                  = avatar_for(current_user, {width: 30, height: 30, class: "avatar-image"})
+                span.user-name
+                  = current_user.full_name
+                b.caret
+              ul.dropdown-menu
+                li
+                  .navbar-content
+                    .row
+                      .col-md-5
+                        = avatar_for(current_user, { width: 100, height: 100, class: "inbox-avatar" })
+                          p.text-center.small
+                          = link_to 'Сменить фото', edit_account_photo_path
+                      .col-md-7
+                        span
+                          = "#{current_user.first_name} #{current_user.last_name}"
+                        p.text-muted.small
+                          = current_user.email
+                        i.fa.fa-user-o[aria-hidden="true"]
+                          = link_to  'Профиль', edit_account_profile_path
+                        br
+                        i.fa.fa-cogs[aria-hidden="true"]
+                          = link_to  'Настройки', edit_account_settings_path
+                        br
+                        i.fa.fa-question-circle-o[aria-hidden="true"]
+                          = link_to 'Помощь'
+                  .navbar-footer
+                    .navbar-footer-content
                       .row
-                        .col-md-5
-                          = avatar_for(current_user, { width: 100, height: 100, class: "inbox-avatar" })
-                            p.text-center.small
-                            = link_to 'Сменить фото', edit_account_photo_path
-                        .col-md-7
-                          span
-                            = "#{current_user.first_name} #{current_user.last_name}"
-                          p.text-muted.small
-                            = current_user.email
-                          i.fa.fa-user-o[aria-hidden="true"]
-                            = link_to  'Профиль', edit_account_profile_path
-                          br
-                          i.fa.fa-cogs[aria-hidden="true"]
-                            = link_to  'Настройки', edit_account_settings_path
-                          br
-                          i.fa.fa-question-circle-o[aria-hidden="true"]
-                            = link_to 'Помощь'
-                    .navbar-footer
-                      .navbar-footer-content
-                        .row
-                          .col-md-6
-                            = link_to "Сменить пароль", edit_user_registration_path, class: "btn btn-default btn-sm pull-right"
-                          .col-md-6
-                            = link_to 'Выйти', destroy_user_session_path, { class: "btn btn-default btn-sm pull-right", :method => :delete  }
-                            i.fa.fa-power-off[aria-hidden="true"]
-        -else
-          .nav.navbar-nav.navbar-right
-            li
-              = link_to 'Войти', new_user_session_path
-            li
-              = link_to 'Регистрация', new_user_registration_path
+                        .col-md-6
+                          = link_to "Сменить пароль", edit_user_registration_path, class: "btn btn-default btn-sm pull-right"
+                        .col-md-6
+                          = link_to 'Выйти', destroy_user_session_path, { class: "btn btn-default btn-sm pull-right", :method => :delete  }
+                          i.fa.fa-power-off[aria-hidden="true"]
+      -else
+        .nav.navbar-nav.navbar-right
+          li
+            = link_to 'Войти', new_user_session_path
+          li
+            = link_to 'Регистрация', new_user_registration_path
