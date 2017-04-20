@@ -3,15 +3,15 @@
     .panel-body
       .media
         .main-info
-          = image_tag current_user.avatar.url(:medium)
+          = image_tag @user.avatar.url(:medium)
           .point
             .average-review-rating data-score== @average_review = @average_review.round(1)
             = @user.reviews.count
             |  отзывов
 
-          - unless @user.id == current_user.id
+          - unless @user == current_user
             = link_to 'Написать', new_message_path(to: @user), class: "btn btn-compose"
-          - if user_signed_in? && @user.id == current_user.id
+          - if user_signed_in? && @user == current_user
             = link_to "Редактировать профиль", edit_account_profile_path, class: "btn btn-compose"
 
         .media-body
@@ -57,7 +57,7 @@
 
   .col-sm-11
     - @user.trips.each do |trip|
-      - if trip.passengers.ids.include?(current_user.id) && trip.status == "archived"
+      - if trip.passengers.include?(current_user) && trip.status == "archived"
         .review-block[align="center"]
           = render 'reviews/form'
           - break

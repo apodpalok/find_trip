@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   before_action :find_trip, only: [:destroy, :show, :add_passenger, :delete_passenger]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :update_status!, only: [:index]
 
   def index
