@@ -7,7 +7,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default-avatar.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path([version_name, "default-avatar.jpg"].compact.join('_'))
   end
 
   version :thumb do
@@ -15,11 +15,15 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
     version :medium do
-    process resize_to_fit: [300, 300]
+    process resize_to_fit: [250, 250]
   end
 
     version :small do
     process resize_to_fit: [140, 140]
+  end
+
+    version :mini do
+    process resize_to_fit: [30, 30]
   end
 
   def extension_whitelist

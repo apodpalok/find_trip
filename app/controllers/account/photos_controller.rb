@@ -5,11 +5,13 @@ module Account
 
     def update
       current_user.update(photo_params)
-      redirect_to edit_account_photo_path(current_user)
+      redirect_to edit_account_photo_path
     end
 
     def destroy
-      current_user.avatar.remove!
+      @user = current_user
+      @user.remove_avatar!
+      @user.save
       redirect_to edit_account_photo_path
     end
 

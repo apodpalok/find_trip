@@ -3,7 +3,7 @@
     .panel-body
       .media
         .main-info
-          = avatar_for(@user, width: 250, height: 250)
+          = image_tag current_user.avatar.url(:medium)
           .point
             .average-review-rating data-score== @average_review = @average_review.round(1)
             = @user.reviews.count

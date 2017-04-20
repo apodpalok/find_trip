@@ -3,7 +3,7 @@
     .panel-body
       .media
         div[align="center"]
-          = avatar_for(current_user, width: 250, height: 250)
+          = image_tag current_user.avatar.url(:medium)
         .media-body
           hr
           - params ||= {}
