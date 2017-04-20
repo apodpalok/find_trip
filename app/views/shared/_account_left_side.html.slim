@@ -13,3 +13,4 @@
           = link_to 'Мое фото', edit_account_photo_path, class: "list-group-item #{ 'active' if params[:photo] }"
           hr
           = link_to 'Настройки', edit_account_settings_path, class: "list-group-item #{ 'active' if params[:settings] }"
+          = link_to 'Безопасность', edit_user_registration_path, class: "list-group-item #{ 'active' if params[:security] }"

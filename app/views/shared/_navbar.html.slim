@@ -60,9 +60,7 @@
                       .navbar-footer-content
                         .row
                           .col-md-6
-                            a.btn.btn-default.btn-sm[href="#"]
-                              i.fa.fa-unlock-alt[aria-hidden="true"]
-                              | Сменить пароль
+                            = link_to "Сменить пароль", edit_user_registration_path, class: "btn btn-default btn-sm pull-right"
                           .col-md-6
                             = link_to 'Выйти', destroy_user_session_path, { class: "btn btn-default btn-sm pull-right", :method => :delete  }
                             i.fa.fa-power-off[aria-hidden="true"]
