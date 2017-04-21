@@ -28,7 +28,7 @@
                   - else
                     - trip.passengers.each do |passenger|
                       div onclick="location.href='#{user_path(passenger)}'" style="cursor:pointer;"
-                        = avatar_for(passenger, {width: 80, height: 80, class: "avatar-image"})
+                        = image_tag passenger.avatar.url(:mini), class: "img-responsive img-circle"
                       = link_to new_message_path(to: passenger) do
                         .point.glyphicon.glyphicon-envelope
                       = link_to passenger.full_name, user_path(passenger)

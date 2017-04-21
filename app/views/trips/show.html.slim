@@ -35,7 +35,7 @@
             | Водитель:
           br
           div onclick="location.href='#{user_path(@trip.drivers[0])}'" style="cursor:pointer;"
-            = avatar_for(@trip.drivers[0], {width: 80, height: 80, class: "avatar-image"})
+            = image_tag @trip.drivers[0].avatar.url(:thumb), class: "img-responsive img-circle"
             = link_to @trip.drivers[0].full_name, user_path(@trip.drivers[0])
         .col-sm-6
           .point
@@ -43,7 +43,7 @@
           br
           - @trip.passengers.each do |passenger|
             div onclick="location.href='#{user_path(passenger)}'" style="cursor:pointer;"
-              = avatar_for(passenger, {width: 80, height: 80, class: "avatar-image"})
+              = image_tag passenger.avatar.url(:thumb), class: "img-responsive img-circle"
               = link_to passenger.full_name, user_path(passenger)
             br
       br

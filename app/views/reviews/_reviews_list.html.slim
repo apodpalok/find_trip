@@ -2,7 +2,7 @@
   .row
     .col-sm-3
       .review-block-name
-        = avatar_for(review.author, {width: 150, height: 150, class: "avatar-image"})
+        = image_tag review.author.avatar.url(:small), class: "img-responsive img-circle"
         br
         = link_to @user.full_name, user_path(@user)
     .col-sm-9
