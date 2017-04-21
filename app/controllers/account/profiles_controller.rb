@@ -21,10 +21,10 @@ module Account
     private
 
     def user_params
-      params.require(:form_user).permit(:first_name, :last_name,
-                                    :email, :mini_bio, :phone_number,
-                                    :postcode, :birth_date, :address, :address2,
-                                    :city, :gender, :current_password)
+      params.require(:user).permit(:first_name, :last_name,
+                                   :email, :mini_bio, :phone_number,
+                                   :postcode, :birth_date, :address, :address2,
+                                   :city, :gender, :current_password)
     end
   end
 end

@@ -18,7 +18,7 @@ module Account
     private
 
     def photo_params
-      params.require(:form_user).permit(:avatar)
+      params.require(:user).permit(:avatar)
     end
   end
 end
