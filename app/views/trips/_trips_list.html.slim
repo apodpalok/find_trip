@@ -12,7 +12,7 @@
         .col-sm-3
           .trip-user-name
             div onclick="location.href='#{user_path(trip.drivers[0])}'" style="cursor:pointer;"
-              = avatar_for(trip.drivers[0], {width: 150, height: 150, class: "avatar-image"})
+              = image_tag trip.drivers[0].avatar.url(:medium), class: "img-responsive img-circle"
               br
               .point.average-review-rating data-score== trip.drivers[0].average_review = trip.drivers[0].average_review
               = trip.drivers[0].reviews.count
