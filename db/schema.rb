@@ -37,13 +37,6 @@ ActiveRecord::Schema.define(version: 20170419071548) do
     t.string   "photo"
   end
 
-  create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "drivers_trips", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "driver_id"
     t.integer "trip_id"
@@ -126,17 +119,6 @@ ActiveRecord::Schema.define(version: 20170419071548) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "body",            limit: 65535
-    t.integer  "conversation_id"
-    t.integer  "user_id"
-    t.boolean  "read",                          default: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
-    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
-  end
-
   create_table "passengers_trips", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "passenger_id"
     t.integer "trip_id"
@@ -176,7 +158,6 @@ ActiveRecord::Schema.define(version: 20170419071548) do
     t.float    "finish_longitude", limit: 24
     t.integer  "duration"
     t.integer  "status",                      default: 0
-    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -205,8 +186,6 @@ ActiveRecord::Schema.define(version: 20170419071548) do
     t.string   "phone_number"
     t.string   "postcode"
     t.string   "avatar"
-    t.string   "provider"
-    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
