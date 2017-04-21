@@ -9,8 +9,8 @@ describe Trip do
   end
 
   context 'validations' do
-    it 'have a valid factory' do
-      expect(build(:trip)).to be_valid
+    context 'have a valid factory' do
+      it { expect(build(:trip)).to be_valid }
     end
 
     context 'is invalid' do
@@ -69,7 +69,7 @@ describe Trip do
     end
 
     it 'set duration' do
-      expect(trip.duration).to be(9998)
+      expect(trip.duration).to be(10123)
     end
 
     it 'set finish_time' do
@@ -81,13 +81,13 @@ describe Trip do
   context 'methods' do
     trip = FactoryGirl.create(:trip)
 
-    context 'self.search' do
+    context '#search' do
       it 'with valid params' do
-        expect(Trip.search('Киев', 'Черкассы', 10, 100)).to include(trip)
+        expect(Trip.search('Киев', 'Черкассы', Date.today + 1.day, 10, 100)).to include(trip)
       end
 
       it 'with invalid params' do
-        expect(Trip.search('Львов', 'Черкассы', 10, 100)).to_not include(trip)
+        expect(Trip.search('Львов', 'Черкассы', Date.today + 1.day, 10, 100)).to_not include(trip)
       end
     end
   end

@@ -10,12 +10,12 @@ class User < ApplicationRecord
                                                foreign_key: 'passenger_id'
   has_many :identities, dependent: :destroy
 
-  validates_presence_of   :email, if: :email_required?
-  validates_uniqueness_of :email, allow_blank: true, if: :email_changed?
-  validates_format_of     :email, with: Devise.email_regexp, allow_blank: true, if: :email_changed?
-  validates_presence_of     :password, if: :password_required?
-  validates_confirmation_of :password, if: :password_required?
-  validates_length_of       :password, within: Devise.password_length, allow_blank: true
+  validates :first_name, :last_name, presence: true
+  validates :email, presence: true, if: :email_required?
+  validates :email, uniqueness: true, allow_blank: true, if: :email_changed?
+  validates :email, format: { with: Devise.email_regexp }, allow_blank: true, if: :email_changed?
+  validates :password, presence: true, confirmation: true, if: :password_required?
+  validates :password, length: { within: Devise.password_length }, allow_blank: true
 
   mount_uploader :avatar, AvatarUploader
   devise :omniauthable, :database_authenticatable, :registerable,
@@ -24,7 +24,7 @@ class User < ApplicationRecord
   acts_as_messageable
 
   def mailboxer_name
-    self.name
+    self.full_name
   end
 
   def mailboxer_email(object)
