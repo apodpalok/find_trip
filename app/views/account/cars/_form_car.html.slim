@@ -1,10 +1,11 @@
 = simple_form_for [:account, @car] do |f|
-  
   = f.input :car_type, label: 'Кузов'
   = f.input :color, label: 'Цвет'
   = f.input :comfort, label: 'Комфорт'
   = f.input :number_seats, label: 'Количество мест'
   | Сменить фото:
   = f.file_field :photo
+  = f.input :car_manufactory_id, as: :select, collection: car_manufatories_for_select , input_html: { class: 'with-chosen', data: { car_models_path: account_car_models_path } }
+  = f.input :car_model_id, as: :select, collection: car_models_for_select(f.object.car_manufactory), input_html: { class: 'with-chosen' }
   br
   = f.button :submit, label: 'Добавить'

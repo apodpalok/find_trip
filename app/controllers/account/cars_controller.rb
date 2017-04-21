@@ -36,7 +36,8 @@ module Account
     private
 
     def car_params
-      params.require(:car).permit(:car_type, :color, :comfort, :number_of_seats, :photo)
+      params.require(:car).permit(:car_type, :color, :comfort, :number_of_seats, :photo,
+                                  :car_manufactory_id, :car_model_id)
     end
 
     def find_car

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :active
       get :archived
     end
+    resources :car_models, only: [:index]
   end
 
   resources :users do
