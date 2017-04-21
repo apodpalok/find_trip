@@ -8,7 +8,6 @@ end
 
 gem 'mini_magick'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
-gem 'bootstrap-will_paginate'
 gem 'bower-rails', '~> 0.11.0'
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
@@ -32,9 +31,11 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'will_paginate'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'rabl-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
