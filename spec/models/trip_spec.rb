@@ -30,6 +30,14 @@ describe Trip do
         expect(build(:trip, price: nil)).to_not be_valid
       end
 
+      it 'if seats is not integer' do
+        expect(build(:trip, seats: '2.5')).to_not be_valid
+      end
+
+      it 'if seats is less 0' do
+        expect(build(:trip, seats: '-1')).to_not be_valid
+      end
+
       it 'if price is not integer' do
         expect(build(:trip, price: '99.9')).to_not be_valid
       end

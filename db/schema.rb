@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419071548) do
+ActiveRecord::Schema.define(version: 20170424175500) do
 
   create_table "car_manufactories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "make"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20170419071548) do
     t.float    "finish_longitude", limit: 24
     t.integer  "duration"
     t.integer  "status",                      default: 0
+    t.integer  "seats"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
