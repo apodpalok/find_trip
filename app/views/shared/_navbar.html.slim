@@ -8,9 +8,10 @@
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand[href="./ORqmj" style="margin-right:-8px; margin-top:-5px;"]
-          img[alt="Brand" src="https://lut.im/7trApsDX08/GeilMRp1FIm4f2p7.png" width="30px" height="30px"] 
-        a.navbar-brand[href="./ORqmj"]
+        .navbar-brand style="margin-right:-8px; margin-top:-5px;"
+          = link_to root_path do
+            = image_tag('car_icon.png', size: "30x30")
+        .navbar-brand
           | FindTrip
         i.brand_network
           small
