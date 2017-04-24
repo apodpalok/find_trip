@@ -65,12 +65,11 @@ describe Trip do
     end
 
     it 'set duration' do
-      expect(trip.duration).to be(10_216)
+      expect(trip.duration).to be(10_123)
     end
 
     it 'set finish_time' do
-      finish_time = DateTime.new(2017, 3, 30, 13, 50, 16)
-      expect(trip.finish_time).to eq(finish_time)
+      expect(trip.finish_time).to eq(trip.start_time + trip.duration)
     end
   end
 
