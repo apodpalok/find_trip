@@ -10,19 +10,28 @@
             li
               = msg
     p
+      .glyphicon.glyphicon-map-marker
       = f.label "Место отправления"
       br
       = f.text_field :start_location, class: 'form-control'
     p
+      .glyphicon.glyphicon-map-marker
       = f.label "Место прибытия"
       br
       = f.text_field :finish_location, class: 'form-control'
     p
+      .glyphicon.glyphicon-time
       = f.label "Дата и время отправления"
       br
       .col-sm-12
         = f.text_field :start_time, id: 'datetimepicker'
     p
+      .glyphicon.glyphicon-user
+      = f.label "Количество мест"
+      br
+      = f.text_field :seats, class: 'form-control'
+    p
+      .glyphicon.glyphicon-usd
       = f.label "Цена за место"
       br
       = f.text_field :price, class: 'form-control'

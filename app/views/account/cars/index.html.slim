@@ -1,14 +1,14 @@
 = render 'shared/alert'
 = render 'shared/account_left_side', car: @car, params: navigation_params.merge(car: true) 
-  
 h3
-  span.text-muted Мое авто 
-.glyphicon.glyphicon-plus
-= link_to 'Добавить автомобиль', new_account_car_path, class: "btn btn-sm btn-warning"
+  span.text-muted Мое авто
+
 hr/
 .col-lg-9.col-md-9.col-sm-12.col-xs-12
   .panel.panel-default
     .panel-body
+      .glyphicon.glyphicon-plus
+      = link_to 'Добавить автомобиль', new_account_car_path, class: "btn btn-sm btn-warning"
       - @user_cars.each do |car|
         .list-group
           .list-group-item.clearfix
