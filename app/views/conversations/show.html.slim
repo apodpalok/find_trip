@@ -5,8 +5,15 @@
     = render "left_panel"
     aside.lg-side
       .inbox-body
-        | Чат с 
-        = render 'participant', conversation: @conversation
+        span[style="margin: 5px;"]
+          | Чат с 
+          = render 'participant', conversation: @conversation
+        span[style="margin: 5px;"]
+          - if @conversation.is_trashed?(current_user)
+            = link_to 'Восстановить', restore_conversation_path(@conversation), class: 'btn btn-xs btn-info', method: :post
+          - else
+            = link_to 'В корзину', conversation_path(@conversation), class: 'btn btn-xs btn-danger', method: :delete,
+                      data: {confirm: 'Are you sure?'}
         .panel.panel-default
           .panel-heading
             = "#{ @conversation.subject}"
