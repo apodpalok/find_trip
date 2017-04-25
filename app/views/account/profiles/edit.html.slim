@@ -7,10 +7,12 @@ hr/
   = simple_form_for current_user, url: account_profile_path, method: :patch do |user|
     fieldset
       label for="gender" Пол
-    = current_user.gender
+    = user.input :gender, label: false, as: :radio_buttons, collection: select_gender, checked: select_gender.first.last
     = user.input :first_name, label: "Имя"
     = user.input :last_name, label: "Фамилия"
-    = user.input :birth_date, label: "Дата рождения"
+    = user.input :birth_date, label: "Дата рождения", as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 12,
+                              order: [:day, :month, :year] 
     = user.input :city, label: "Город"
     .alert
       | Расскажите о себе другим пользователям (не менее 10 символов).

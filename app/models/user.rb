@@ -43,4 +43,11 @@ class User < ApplicationRecord
   def facebook_client
     @facebook_client ||= Facebook.client( access_token: facebook.accesstoken )
   end
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - self.birth_date.year - ((now.month > self.birth_date.month || 
+                                       (now.month == self.birth_date.month && 
+                                        now.day >= self.birth_date.day)) ? 0 : 1)
+  end
 end

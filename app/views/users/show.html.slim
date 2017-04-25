@@ -17,9 +17,14 @@
         .media-body
           hr
           .point
+            b Пол:
+            br = show_select(@user.gender, select_gender)
+            hr
             b Возраст:
+            br = "#{@user.age}"
             hr
             b О себе:
+            br = @user.mini_bio
 
 .col-lg-9.col-md-9.col-sm-10.col-xs-10
   .col-sm-11
