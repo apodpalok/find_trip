@@ -47,9 +47,14 @@
               = link_to passenger.full_name, user_path(passenger)
             br
       br
+      .alert
+        | В этой поездке осталось &nbsp;
+        b
+          = @trip.free_seats
+        |  свободных мест
 
       - unless @trip.drivers[0] == current_user
-        - unless @trip.passengers.include?(current_user)
+        - if @trip.passengers.count < @trip.seats && @trip.passengers.exclude?(current_user)
           = link_to "Cтать пассажиром", add_passenger_trip_path(@trip), method: :put, class: "btn btn-compose"
         - if @trip.passengers.include?(current_user)
           = link_to "Не учавствовать в поездке", delete_passenger_trip_path(@trip), method: :put, class: "btn btn-compose"

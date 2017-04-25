@@ -10,6 +10,13 @@ class User < ApplicationRecord
                                                foreign_key: 'passenger_id'
   has_many :identities, dependent: :destroy
 
+  validates :first_name, :last_name, presence: true
+  validates :email, presence: true, if: :email_required?
+  validates :email, uniqueness: true, allow_blank: true, if: :email_changed?
+  validates :email, format: { with: Devise.email_regexp }, allow_blank: true, if: :email_changed?
+  validates :password, presence: true, confirmation: true, if: :password_required?
+  validates :password, length: { within: Devise.password_length }, allow_blank: true
+
   mount_uploader :avatar, AvatarUploader
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
@@ -17,7 +24,7 @@ class User < ApplicationRecord
   acts_as_messageable
 
   def mailboxer_name
-    self.name
+    self.full_name
   end
 
   def mailboxer_email(object)
@@ -49,5 +56,13 @@ class User < ApplicationRecord
     now.year - self.birth_date.year - ((now.month > self.birth_date.month || 
                                        (now.month == self.birth_date.month && 
                                         now.day >= self.birth_date.day)) ? 0 : 1)
+  end
+  def password_required?
+    return false if email.blank?
+    !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
+  def email_required?
+    true
   end
 end
