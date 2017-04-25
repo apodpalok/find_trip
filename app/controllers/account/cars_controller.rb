@@ -1,6 +1,6 @@
 module Account
   class CarsController < BaseController
-    before_action :current_user_car, only: [:show, :edit]
+    before_action :current_user_car, only: [:edit]
     before_action :find_car, only: [:destroy, :edit, :update]
 
     def index
@@ -36,7 +36,7 @@ module Account
     private
 
     def car_params
-      params.require(:car).permit(:car_type, :color, :comfort, :number_of_seats, :photo,
+      params.require(:car).permit(:car_type, :color, :comfort, :photo,
                                   :car_manufactory_id, :car_model_id)
     end
 

@@ -17,28 +17,23 @@ hr/
                 = image_tag car.photo.url(:medium)
             .profile-teaser-main
               h2.profile-name
-                = link_to 'Honda Accord', edit_account_car_path(car)
+                = link_to "#{car.car_manufactory.make} #{car.car_model.model}", edit_account_car_path(car)
               .profile-info
                 .info.glyphicon.glyphicon-info-sign
                   span
                     | Тип:
                   i
-                    = car.car_type
+                    = show_select(car.car_type, select_type)
                 .info.glyphicon.glyphicon-adjust
                   span
                     | Цвет:
                   i
-                    = car.color
+                    = show_select(car.color, select_color)
                 .info.glyphicon.glyphicon-star
                   span
                     | Комфорт:
                   i
-                    = car.comfort
-                .info.glyphicon.glyphicon-user
-                  span
-                    | Мест:
-                  i
-                    = car.number_seats
+                    = show_select(car.comfort, select_comfort)
                 hr
                 .right_nav
                   = link_to 'Редактировать', edit_account_car_path(car)
