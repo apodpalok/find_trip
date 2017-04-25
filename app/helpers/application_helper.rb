@@ -17,4 +17,21 @@ module ApplicationHelper
       when :warning then "alert alert-warning"
     end
   end
+  
+  def select_gender
+    [['Мужской', :male], ['Женский', :female]]
+  end
+
+  def show_select(obj_attribute, select_type)
+    count = 0
+    select_type.each do |collection|
+      collection.each do |attribute|
+        if attribute == obj_attribute.to_sym
+          return select_type[count].first
+        end
+      end
+      count+=1
+    end
+    ""
+  end
 end
