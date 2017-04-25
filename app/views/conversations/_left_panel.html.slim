@@ -1,0 +1,22 @@
+aside.sm-side
+  .user-head
+    = image_tag current_user.avatar.url(:thumb)
+    .user-name
+      h5
+        = link_to "#{current_user.first_name}", edit_account_profile_path
+      span
+        = link_to "#{current_user.email}"
+  br
+  ul.inbox-nav.inbox-divider
+    = content_tag(:li, class: "#{mailbox_section 'inbox', @box}") do
+      = link_to conversations_path(box: "inbox"), class: 'fa fa-inbox' do
+        | Входящие
+        = content_tag(:span, "", class: 'label label-danger pull-right')
+    = content_tag(:li, class: "#{mailbox_section 'sent', @box}") do
+      = link_to conversations_path(box: "sent"), class: 'fa fa-envelope-o' do
+        | Отправленные
+        = content_tag(:span, "", class: 'label label-danger pull-right')
+    = content_tag(:li, :class => "#{mailbox_section 'trash', @box}") do
+      = link_to conversations_path(box: "trash"), class: 'fa fa-trash-o' do
+        | Корзина
+        = content_tag(:span, "", class: 'label label-danger pull-right')

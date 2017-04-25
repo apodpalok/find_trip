@@ -1,0 +1,5 @@
+tr data-link="#{conversation_path(conversation)}" 
+  td.view-message.dont-show
+    = render 'participant', conversation: conversation
+  td.view-message= conversation.last_message.body
+  td.view-message.text-right= conversation.last_message.created_at.strftime("%-d %B %Y, %H:%M:%S")
