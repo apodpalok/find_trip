@@ -12,7 +12,7 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'GET#show' do
-    let(:trip) { FactoryGirl.create(:trip) }
+    let(:trip) { create(:trip) }
     subject { get :show, params: { id: trip.id } }
 
     it 'has status success' do
@@ -38,7 +38,7 @@ RSpec.describe TripsController, type: :controller do
 
     context 'with valid params' do
       subject do
-        post :create, params: { trip: FactoryGirl.attributes_for(:trip) }
+        post :create, params: { trip: attributes_for(:trip) }
       end
 
       it 'create trip' do
@@ -46,7 +46,7 @@ RSpec.describe TripsController, type: :controller do
       end
 
       it 'instance of Trips' do
-        post :create, params: { trip: FactoryGirl.attributes_for(:trip) }
+        post :create, params: { trip: attributes_for(:trip) }
         expect(assigns(:trip)).to be_a(Trip)
       end
 
@@ -61,7 +61,7 @@ RSpec.describe TripsController, type: :controller do
 
     context 'with invalid params' do
       subject do
-        post :create, params: { trip: FactoryGirl.attributes_for(:trip, price: nil) }
+        post :create, params: { trip: attributes_for(:trip, price: nil) }
       end
 
       it 'render new template' do
@@ -73,8 +73,8 @@ RSpec.describe TripsController, type: :controller do
   describe 'PUT#add_passenger' do
     before { login_user }
 
-    let(:trip) { FactoryGirl.create(:trip) }
-    let(:user) { FactoryGirl.create(:user) }
+    let(:trip) { create(:trip) }
+    let(:user) { create(:user) }
 
     subject { put :add_passenger, params: { id: trip.id } }
 
@@ -91,8 +91,8 @@ RSpec.describe TripsController, type: :controller do
   describe 'PUT#delete_passenger' do
     before { login_user }
 
-    let(:trip) { FactoryGirl.create(:trip) }
-    let(:user) { FactoryGirl.create(:user) }
+    let(:trip) { create(:trip) }
+    let(:user) { create(:user) }
 
     subject { put :delete_passenger, params: { id: trip.id } }
 
@@ -109,12 +109,11 @@ RSpec.describe TripsController, type: :controller do
   describe 'DELETE#destroy' do
     before { login_user }
 
-    let(:trip) { FactoryGirl.create(:trip) }
+    let!(:trip) { create(:trip) }
 
     subject { delete :destroy, params: { id: trip.id } }
 
     it 'delete trip' do
-      trip
       expect { subject }.to change(Trip, :count).by(-1)
     end
 

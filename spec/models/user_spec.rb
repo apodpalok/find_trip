@@ -42,8 +42,8 @@ describe User do
   end
 
   context 'methods' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:review) { FactoryGirl.create(:review, user_id: user.id) }
+    let(:user) { create(:user) }
+    let(:review) { create(:review, user_id: user.id) }
 
     context '.average_review' do
       it 'with review' do

@@ -2,9 +2,9 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET#show' do
     before { login_user }
 
-    let(:user) { FactoryGirl.create(:user) }
-    let(:review1) { FactoryGirl.create(:review) }
-    let(:review2) { FactoryGirl.create(:review, rating: 3) }
+    let(:user) { create(:user) }
+    let(:review1) { create(:review) }
+    let(:review2) { create(:review, rating: 3) }
 
     it 'average if reviews are present' do
       user.reviews << review1
