@@ -1,6 +1,5 @@
 module Account
   class CarsController < BaseController
-    before_action :current_user_car, only: [:edit]
     before_action :find_car, only: [:destroy, :edit, :update]
 
     def index
@@ -8,14 +7,14 @@ module Account
     end
 
     def new
-      @car = Car.new
+      @car = current_user.cars.build
     end
 
     def create
-      @car = current_user.cars.new(car_params)
+      @car = current_user.cars.build(car_params)
 
       if @car.save
-        redirect_to account_cars_path, alert: 'Авто добавлено'
+        redirect_to account_cars_path, notice: 'Авто добавлено'
       else
         render :new
       end
@@ -24,8 +23,11 @@ module Account
     def edit; end
 
     def update
-      @car.update(car_params)
-      redirect_to account_cars_path, notice: "Обновлено"
+      if @car.update(car_params)
+        redirect_to account_cars_path, notice: "Обновлено"
+      else
+        render :edit
+      end
     end
 
     def destroy
@@ -41,12 +43,7 @@ module Account
     end
 
     def find_car
-      @car = Car.find(params[:id])
-    end
-
-    def current_user_car
-      return if current_user.cars.exists?(id: find_car.id)
-      not_found
+      @car = current_user.cars.find(params[:id])
     end
   end
 end
