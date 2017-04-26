@@ -85,7 +85,7 @@ describe Trip do
   end
 
   context 'methods' do
-    trip = FactoryGirl.create(:trip)
+    let(:trip) { trip = FactoryGirl.create(:trip) }
 
     context '#search' do
       it 'with valid params' do

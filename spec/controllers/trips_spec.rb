@@ -109,10 +109,12 @@ RSpec.describe TripsController, type: :controller do
   describe 'DELETE#destroy' do
     before { login_user }
 
-    trip = FactoryGirl.create(:trip)
+    let(:trip) { FactoryGirl.create(:trip) }
+
     subject { delete :destroy, params: { id: trip.id } }
 
     it 'delete trip' do
+      trip
       expect { subject }.to change(Trip, :count).by(-1)
     end
 
