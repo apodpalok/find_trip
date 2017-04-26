@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe TripMembership do
   context 'associations' do
     it { should belong_to(:user) }

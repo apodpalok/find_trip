@@ -38,20 +38,25 @@ gem 'omniauth-facebook'
 gem 'rabl-rails'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
-  gem 'shoulda', '~> 3.5'
-  gem 'simplecov', :require => false
 end
 
 group :development do
+  gem 'byebug', platform: :mri
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'simplecov', require: false
+  gem 'shoulda', '~> 3.5'
 end
 
 group :production do
