@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Trip do
   context 'associations' do
     it { should have_many(:trip_memberships).dependent(:destroy) }

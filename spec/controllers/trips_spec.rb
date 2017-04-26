@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TripsController, type: :controller do
   describe 'GET#index' do
     subject { get :index }
