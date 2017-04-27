@@ -24,7 +24,7 @@ module Account
 
     def update
       if @car.update(car_params)
-        redirect_to account_cars_path, notice: "Обновлено"
+        redirect_to account_cars_path, notice: 'Обновлено'
       else
         render :edit
       end

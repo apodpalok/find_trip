@@ -57,7 +57,7 @@ describe User do
     end
 
     context '.full_name' do
-      it { expect(user.full_name).to eq("Anna Anna") }
+      it { expect(user.full_name).to eq('Anna Anna') }
     end
 
     context '.mailboxer_email' do

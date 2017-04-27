@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'mini_magick'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'bower-rails', '~> 0.11.0'
 gem 'carrierwave', '~> 1.0'
@@ -17,11 +16,17 @@ gem 'gmaps4rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'mailboxer'
+gem 'mini_magick'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'pry-rails'
 gem 'puma', '~> 3.0'
+gem 'rabl-rails'
 gem 'rails', '~> 5.0.2'
 gem 'rails_admin', '~> 1.1.1'
 gem 'rest-client'
@@ -31,16 +36,6 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'kaminari-bootstrap', '~> 3.0.1'
-gem 'kaminari'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'rabl-rails'
-
-group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'faker'
-end
 
 group :development do
   gem 'byebug', platform: :mri
@@ -53,10 +48,11 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'simplecov', require: false
   gem 'shoulda', '~> 3.5'
+  gem 'simplecov', require: false
 end
 
 group :production do

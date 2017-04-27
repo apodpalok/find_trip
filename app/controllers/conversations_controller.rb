@@ -1,17 +1,17 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :get_box, only: [:index]
-  before_action :get_mailbox
-  before_action :get_conversation, except: [:index, :empty_trash]
+  before_action :take_box, only: [:index]
+  before_action :take_mailbox
+  before_action :take_conversation, except: [:index, :empty_trash]
 
   def index
-    if @box.eql? "inbox"
-      @conversations = @mailbox.inbox
-    elsif @box.eql? "sent"
-      @conversations = @mailbox.sentbox
-    else
-      @conversations = @mailbox.trash
-    end
+    @conversations = if @box.eql? 'inbox'
+                       @mailbox.inbox
+                     elsif @box.eql? 'sent'
+                       @mailbox.sentbox
+                     else
+                       @mailbox.trash
+                     end
 
     @conversations = @conversations.page(params[:page]).per(10)
   end
@@ -44,7 +44,6 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
 
-
   def destroy
     @conversation.move_to_trash(current_user)
     flash[:success] = 'The conversation was moved to trash.'
@@ -53,18 +52,18 @@ class ConversationsController < ApplicationController
 
   private
 
-  def get_box
-    if params[:box].blank? or !["inbox","sent","trash"].include?(params[:box])
+  def take_box
+    if params[:box].blank? || !%w[inbox sent trash].include?(params[:box])
       params[:box] = 'inbox'
     end
     @box = params[:box]
   end
 
-  def get_mailbox
+  def take_mailbox
     @mailbox ||= current_user.mailbox
   end
 
-  def get_conversation
+  def take_conversation
     @conversation ||= @mailbox.conversations.find(params[:id])
   end
 end

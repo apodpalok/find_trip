@@ -1,6 +1,5 @@
 module Account
   class SettingsController < ApplicationController
-    def edit
-    end
+    def edit; end
   end
 end

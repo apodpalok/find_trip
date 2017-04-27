@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  devise_for :users, controllers: { registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  devise_scope :user do
+    get '/users/auth/:provider/upgrade' => 'users/omniauth_callbacks#upgrade', as: :user_omniauth_upgrade
+    get '/users/auth/:provider/setup', to: 'users/omniauth_callbacks#setup'
+  end
 
   root 'home#index'
 
@@ -41,11 +46,4 @@ Rails.application.routes.draw do
       delete :empty_trash
     end
   end
-
-  devise_scope :user do
-    get '/users/auth/:provider/upgrade' => 'users/omniauth_callbacks#upgrade', as: :user_omniauth_upgrade
-    get '/users/auth/:provider/setup', to:'users/omniauth_callbacks#setup'
-  end
-
-  resources :blogs, only: [:index, :show]
 end

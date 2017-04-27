@@ -23,46 +23,47 @@ class User < ApplicationRecord
 
   acts_as_messageable
 
-  def mailboxer_name
-    self.full_name
+  def age
+    now = Time.now.utc.to_date
+    now.year - birth_date.year - (now.month > birth_date.month ||
+                                 (now.month == birth_date.month &&
+                                  now.day >= birth_date.day) ? 0 : 1)
   end
 
-  def mailboxer_email(object)
-    self.email
+  def average_review
+    reviews.average(:rating).to_f.round(1)
+  end
+
+  def email_required?
+    true
+  end
+
+  def facebook
+    identities.where(provider: 'facebook').first
+  end
+
+  def facebook_client
+    @facebook_client ||= Facebook.client(access_token: facebook.accesstoken)
   end
 
   def full_name
     [first_name, last_name].join(' ')
   end
 
-  def average_review
-    self.reviews.average(:rating).to_f.round(1)
+  def mailboxer_email(_object)
+    email
   end
 
-  def percent_review(rating)
-    self.reviews.where(rating: rating).count.to_f / self.reviews.count.to_f * 100
+  def mailboxer_name
+    full_name
   end
 
-  def facebook
-    identities.where( provider: "facebook" ).first
-  end
-
-  def facebook_client
-    @facebook_client ||= Facebook.client( access_token: facebook.accesstoken )
-  end
-
-  def age
-    now = Time.now.utc.to_date
-    now.year - self.birth_date.year - ((now.month > self.birth_date.month || 
-                                       (now.month == self.birth_date.month && 
-                                        now.day >= self.birth_date.day)) ? 0 : 1)
-  end
   def password_required?
     return false if email.blank?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
 
-  def email_required?
-    true
+  def percent_review(rating)
+    reviews.where(rating: rating).count.to_f / reviews.count.to_f * 100
   end
 end

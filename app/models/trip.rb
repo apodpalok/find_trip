@@ -10,7 +10,7 @@ class Trip < ApplicationRecord
 
   validates :start_location, :finish_location, :start_time, presence: true
   validates :price, :seats, presence: true,
-                    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+                            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validate :start_time_cannot_be_in_the_past
 
   before_save :geocode_start_location,
@@ -50,14 +50,12 @@ class Trip < ApplicationRecord
   end
 
   def free_seats
-    self.seats - self.passengers.count
+    seats - passengers.count
   end
 
   private
 
   def start_time_cannot_be_in_the_past
-    if start_time.present? && start_time < DateTime.now
-      errors.add(:start_time, "can't be in the past")
-    end
+    errors.add(:start_time, "can't be in the past") if start_time.present? && start_time < DateTime.now
   end
 end

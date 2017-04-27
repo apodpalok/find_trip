@@ -1,6 +1,5 @@
 module Account
   class PhotosController < BaseController
-
     def edit; end
 
     def update

@@ -75,7 +75,7 @@ describe Trip do
     end
 
     it 'set duration' do
-      expect(trip.duration).to be(10123)
+      expect(trip.duration).to be(10_123)
     end
 
     it 'set finish_time' do

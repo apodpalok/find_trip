@@ -8,7 +8,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
 require 'factory_girl'
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 

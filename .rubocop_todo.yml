@@ -10,9 +10,26 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Enabled: false
 
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/test_helper.rb'
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false

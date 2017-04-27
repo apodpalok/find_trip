@@ -11,17 +11,17 @@ module Account
 
     def select_type
       [['Седан', :sedan], ['Кабриолет', :cabriolet], ['Универсал', :wagon], ['Хэтчбэк', :hatchback],
-      ['Пикап', :hatchback], ['Минивэн', :hatchback], ['Фургон', :hatchback], ['SUV', :hatchback]]
+       ['Пикап', :hatchback], ['Минивэн', :hatchback], ['Фургон', :hatchback], ['SUV', :hatchback]]
     end
 
     def select_color
-      [['Красный', :red], ['Черный', :black], ['Серый', :grey], ['Синий', :blue], ['Белый', :white], 
-      ['Коричневый', :brown], ['Розовый', :pink], ['Фиолетовый', :purple], ['Жёлтый', :yellow],
-      ['Зелёный', :green], ['Бордовый', :vinous], ['Бежевый', :beige], ['Оранжевый', :orange]] 
+      [['Красный', :red], ['Черный', :black], ['Серый', :grey], ['Синий', :blue], ['Белый', :white],
+       ['Коричневый', :brown], ['Розовый', :pink], ['Фиолетовый', :purple], ['Жёлтый', :yellow],
+       ['Зелёный', :green], ['Бордовый', :vinous], ['Бежевый', :beige], ['Оранжевый', :orange]]
     end
 
     def select_comfort
-      [["Люкс", :luxe], ["Стандарт", :standard]]
+      [['Люкс', :luxe], ['Стандарт', :standard]]
     end
   end
 end
