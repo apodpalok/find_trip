@@ -5,6 +5,7 @@ FactoryGirl.define do
     password_confirmation 'password'
     first_name 'Anna'
     last_name 'Anna'
+    avatar File.open(File.join(Rails.root, '/spec/fixtures/default-avatar.jpg'))
   end
 
   factory :author, class: User do

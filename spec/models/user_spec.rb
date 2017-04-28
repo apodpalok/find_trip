@@ -41,6 +41,18 @@ describe User do
     end
   end
 
+  context 'uploader' do
+    let(:user) { create(:user) }
+
+    it 'user has avatar' do
+      expect(user.avatar).to_not be_nil
+    end
+
+    it 'user has default avatar' do
+      expect(user.avatar_url).to eq ("/uploads/user/avatar/#{user.id}/default-avatar.jpg")
+    end
+  end
+
   context 'methods' do
     let(:user) { create(:user) }
     let(:review) { create(:review, user_id: user.id) }
